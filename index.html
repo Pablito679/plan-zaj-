@@ -1,0 +1,35 @@
+<!doctype html><html lang="pl"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#111827"><meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="Plan zajęć">
+<link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icon-192.png">
+<title>Plan zajęć • Ekonomia G2</title>
+<style>
+:root{--bg:#f5f7fb;--card:#fff;--text:#172033;--muted:#667085;--line:#e6eaf0;--shadow:0 8px 28px rgba(16,24,40,.07)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
+header{background:#111827;color:#fff;padding:22px 18px 18px;position:sticky;top:0;z-index:10;box-shadow:0 4px 18px rgba(0,0,0,.12)}.wrap{max-width:1050px;margin:auto}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px}.title{font-size:22px;font-weight:800}.sub{font-size:13px;color:#cbd5e1;margin-top:4px}
+nav{display:flex;gap:8px;margin-top:16px;overflow:auto}.tab{border:0;border-radius:10px;padding:9px 13px;background:#263246;color:#dbe4f0;font-weight:700;white-space:nowrap;cursor:pointer}.tab.active{background:#fff;color:#111827}
+main{padding:18px}.controls{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}.input,.select{border:1px solid var(--line);background:#fff;border-radius:12px;padding:11px 13px;font-size:15px;outline:none}.input{flex:1;min-width:220px}
+.section{margin:18px 0}.section h2{font-size:17px;margin:0 0 10px}.day{margin-bottom:18px}.dayhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}.dayname{font-weight:800}.badge{font-size:12px;padding:4px 8px;border-radius:999px;background:#e8eefc;color:#2853a6}
+.card{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:13px 14px;margin:8px 0;box-shadow:var(--shadow);display:flex;gap:13px;align-items:flex-start}.time{font-weight:800;min-width:92px;font-size:14px}.content{flex:1}.subject{font-weight:800;font-size:15px}.meta{font-size:13px;color:var(--muted);margin-top:4px}.mode{font-size:11px;font-weight:800;padding:4px 7px;border-radius:999px;white-space:nowrap}.remote{background:#e8f0ff;color:#1d4ed8}.onsite{background:#eaf8ef;color:#15803d}.break{background:#f1f3f5;color:#64748b}
+.empty{padding:28px;text-align:center;color:var(--muted)}.install{background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;border-radius:14px;padding:12px 14px;margin-bottom:16px;font-size:14px}
+.subject-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;margin:9px 0;display:flex;justify-content:space-between;align-items:center}.subject-card button{border:0;background:#eef2ff;color:#3346a8;padding:8px 11px;border-radius:10px;font-weight:700}
+footer{text-align:center;color:#98a2b3;font-size:12px;padding:25px}@media(min-width:800px){main{padding:25px}}
+</style></head><body>
+<header><div class="wrap"><div class="top"><div><div class="title">Plan zajęć</div><div class="sub">Ekonomia • Grupa 2 • semestr zimowy 2026/2027</div></div></div>
+<nav><button class="tab active" data-tab="next">Najbliższe</button><button class="tab" data-tab="schedule">Zjazdy</button><button class="tab" data-tab="subjects">Przedmioty</button></nav></div></header>
+<main class="wrap"><div id="installHint" class="install" style="display:none">Na iPhonie wybierz <b>Udostępnij → Dodaj do ekranu początkowego</b>.</div>
+<div class="controls"><input id="search" class="input" placeholder="Szukaj przedmiotu, sali, dnia…"><select id="mode" class="select"><option value="">Wszystkie</option><option>Na miejscu</option><option>Zdalnie</option></select></div><div id="app"></div></main>
+<footer>Plan wygenerowany na podstawie arkusza „Plan szczegółowy”.</footer>
+<script src="data.js"></script><script>
+const data=window.SCHEDULE_DATA||[],app=document.getElementById('app'),search=document.getElementById('search'),mode=document.getElementById('mode');let tab='next';
+const fmt=d=>new Intl.DateTimeFormat('pl-PL',{day:'numeric',month:'long',year:'numeric'}).format(new Date(d+'T12:00:00'));
+function matches(e){let q=search.value.trim().toLowerCase();return(!q||[e.subject,e.type,e.place,e.day,e.termin,e.time].join(' ').toLowerCase().includes(q))&&(!mode.value||e.mode===mode.value)}
+function card(e){let cls=e.break||e.free?'break':e.mode==='Zdalnie'?'remote':'onsite',label=e.break?'Przerwa':e.free?'Wolne':e.mode;return `<div class="card"><div class="time">${e.time}</div><div class="content"><div class="subject">${e.subject}</div><div class="meta">${[e.type,e.place].filter(Boolean).join(' • ')||'—'}</div></div><span class="mode ${cls}">${label}</span></div>`}
+function grouped(items){let map={};items.forEach(e=>(map[e.date]??=[]).push(e));return Object.keys(map).sort().map(date=>{let x=map[date],d=x[0];return `<div class="day"><div class="dayhead"><span class="dayname">${d.day}, ${fmt(date)}</span><span class="badge">Zjazd ${d.zjazd}</span></div>${x.map(card).join('')}</div>`}).join('')}
+function render(){let filtered=data.filter(matches);if(tab==='next'){let today=new Date().toISOString().slice(0,10);filtered=filtered.filter(e=>e.date>=today&&!e.break&&!e.free).slice(0,12);app.innerHTML=filtered.length?`<div class="section"><h2>Najbliższe zajęcia</h2>${grouped(filtered)}</div>`:`<div class="empty">Brak kolejnych zajęć pasujących do filtrów.</div>`}else if(tab==='schedule'){app.innerHTML=filtered.length?`<div class="section"><h2>Pełny plan</h2>${grouped(filtered)}</div>`:`<div class="empty">Brak wyników.</div>`}else{let counts={};data.filter(e=>!e.break&&!e.free).forEach(e=>counts[e.subject]=(counts[e.subject]||0)+1);let names=Object.keys(counts).filter(n=>!search.value||n.toLowerCase().includes(search.value.toLowerCase())).sort();app.innerHTML=`<div class="section"><h2>Przedmioty</h2>${names.map(n=>`<div class="subject-card"><span>${n}</span><button onclick='showSubject(${JSON.stringify(n)})'>${counts[n]} zaj.</button></div>`).join('')}</div>`}}
+function showSubject(n){tab='schedule';search.value=n;document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x.dataset.tab==='schedule'));render();scrollTo({top:0,behavior:'smooth'})}
+document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));b.classList.add('active');tab=b.dataset.tab;render()});search.oninput=render;mode.onchange=render;
+if(location.protocol==='https:'&&'serviceWorker'in navigator)navigator.serviceWorker.register('sw.js');if(/iPhone|iPad|iPod/i.test(navigator.userAgent)&&!navigator.standalone)document.getElementById('installHint').style.display='block';render();
+</script></body></html>
