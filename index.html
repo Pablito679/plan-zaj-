@@ -98,8 +98,7 @@ body.drawer-open {
 header{
   background: var(--header-bg);
   color: #fff;
-  /* env(safe-area-inset-top) obniża zawartość poniżej "notcha" na iPhone */
-  padding: calc(20px + env(safe-area-inset-top)) 18px 16px;
+  padding: calc(16px + env(safe-area-inset-top)) 18px 16px;
   position: sticky;
   top: 0;
   z-index: 10;
@@ -113,7 +112,7 @@ header{
   background: transparent;
   border: none;
   color: #fff;
-  font-size: 24px;
+  font-size: 26px;
   cursor: pointer;
   padding: 8px;
   margin-left: -8px;
@@ -277,7 +276,6 @@ main{padding:18px}
   display: flex;
   flex-direction: column;
   overflow-y: auto;
-  /* Dodanie marginesu górnego dla wcięcia ekranu */
   padding-top: env(safe-area-inset-top);
 }
 
@@ -358,14 +356,13 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:25px}
 
 <div class="drawer" id="drawer">
   <div class="drawer-header">
-    <div class="drawer-title">Szybki przegląd</div>
+    <div class="drawer-title">Nawigacja</div>
     <button class="drawer-close" id="closeDrawer">✕</button>
   </div>
   <div class="drawer-content">
     <nav class="drawer-nav">
       <button class="drawer-nav-item" id="navAll">📅 Pełny plan</button>
-      <button class="drawer-nav-item" id="navToday">⚡ Dzisiaj</button>
-      <button class="drawer-nav-item" id="navTomorrow">⏭️ Jutro</button>
+      <button class="drawer-nav-item" id="navNextDays">⚡ Najbliższe zjazdy</button>
     </nav>
   </div>
 </div>
@@ -419,10 +416,9 @@ const overlay = document.getElementById('overlay');
 const btnOpen = document.getElementById('openDrawer');
 const btnClose = document.getElementById('closeDrawer');
 const navAll = document.getElementById('navAll');
-const navToday = document.getElementById('navToday');
-const navTomorrow = document.getElementById('navTomorrow');
+const navNextDays = document.getElementById('navNextDays');
 
-let currentView = 'all';
+let currentView = 'all'; // 'all', 'nextDays'
 
 function toggleDrawer() {
   drawer.classList.toggle('open');
@@ -438,17 +434,13 @@ function setView(viewMode) {
   currentView = viewMode;
   
   navAll.classList.remove('active');
-  navToday.classList.remove('active');
-  navTomorrow.classList.remove('active');
+  navNextDays.classList.remove('active');
   
   if (viewMode === 'all') {
     navAll.classList.add('active');
     filterControls.style.display = 'flex';
-  } else if (viewMode === 'today') {
-    navToday.classList.add('active');
-    filterControls.style.display = 'none';
-  } else if (viewMode === 'tomorrow') {
-    navTomorrow.classList.add('active');
+  } else if (viewMode === 'nextDays') {
+    navNextDays.classList.add('active');
     filterControls.style.display = 'none';
   }
   
@@ -457,8 +449,7 @@ function setView(viewMode) {
 }
 
 navAll.addEventListener('click', () => setView('all'));
-navToday.addEventListener('click', () => setView('today'));
-navTomorrow.addEventListener('click', () => setView('tomorrow'));
+navNextDays.addEventListener('click', () => setView('nextDays'));
 
 
 const LOCATIONS = [
@@ -544,20 +535,17 @@ function initFilters() {
 const fmt = d => new Intl.DateTimeFormat('pl-PL', {day: 'numeric', month: 'long', year: 'numeric'}).format(new Date(d + 'T12:00:00'));
 
 function matches(e) {
-  if (currentView === 'today') {
-      // Dla strefy czasowej w Polsce
+  if (currentView === 'nextDays') {
       const today = new Date();
       today.setMinutes(today.getMinutes() - today.getTimezoneOffset());
       const todayStr = today.toISOString().split('T')[0];
-      return e.date === todayStr;
-  }
-  
-  if (currentView === 'tomorrow') {
+
       const tomorrow = new Date();
       tomorrow.setDate(tomorrow.getDate() + 1);
       tomorrow.setMinutes(tomorrow.getMinutes() - tomorrow.getTimezoneOffset());
       const tomorrowStr = tomorrow.toISOString().split('T')[0];
-      return e.date === tomorrowStr;
+
+      return e.date === todayStr || e.date === tomorrowStr;
   }
 
   const selectedZjazd = zjazdSelect.value;
@@ -633,9 +621,7 @@ function grouped(items) {
 
 function render() {
   let filtered = data.filter(matches);
-  let title = '';
-  if (currentView === 'today') title = '<h2>Zajęcia dzisiaj</h2>';
-  if (currentView === 'tomorrow') title = '<h2>Zajęcia jutro</h2>';
+  let title = currentView === 'nextDays' ? '<h2>Najbliższe zjazdy (Dzisiaj i Jutro)</h2>' : '';
 
   app.innerHTML = filtered.length ? `<div class="section">${title}${grouped(filtered)}</div>` : `<div class="empty">Brak zajęć na ten termin / pasujących do filtrów.</div>`;
 }
