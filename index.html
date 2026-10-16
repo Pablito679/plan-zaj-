@@ -98,7 +98,8 @@ body.drawer-open {
 header{
   background: var(--header-bg);
   color: #fff;
-  padding: 16px 18px;
+  /* env(safe-area-inset-top) obniża zawartość poniżej "notcha" na iPhone */
+  padding: calc(20px + env(safe-area-inset-top)) 18px 16px;
   position: sticky;
   top: 0;
   z-index: 10;
@@ -114,7 +115,8 @@ header{
   color: #fff;
   font-size: 24px;
   cursor: pointer;
-  padding: 4px;
+  padding: 8px;
+  margin-left: -8px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -130,7 +132,7 @@ header{
   color: #fff;
   border: 1px solid var(--line);
   border-radius: 10px;
-  padding: 8px 12px;
+  padding: 10px 14px;
   font-size: 16px;
   cursor: pointer;
   display: flex;
@@ -275,6 +277,8 @@ main{padding:18px}
   display: flex;
   flex-direction: column;
   overflow-y: auto;
+  /* Dodanie marginesu górnego dla wcięcia ekranu */
+  padding-top: env(safe-area-inset-top);
 }
 
 .drawer.open {
@@ -299,9 +303,10 @@ main{padding:18px}
   background: none;
   border: none;
   color: var(--muted);
-  font-size: 24px;
+  font-size: 28px;
   cursor: pointer;
-  padding: 4px;
+  padding: 8px;
+  margin-right: -8px;
 }
 
 .drawer-content {
@@ -417,7 +422,7 @@ const navAll = document.getElementById('navAll');
 const navToday = document.getElementById('navToday');
 const navTomorrow = document.getElementById('navTomorrow');
 
-let currentView = 'all'; // 'all', 'today', 'tomorrow'
+let currentView = 'all';
 
 function toggleDrawer() {
   drawer.classList.toggle('open');
@@ -540,18 +545,21 @@ const fmt = d => new Intl.DateTimeFormat('pl-PL', {day: 'numeric', month: 'long'
 
 function matches(e) {
   if (currentView === 'today') {
-      const todayStr = new Date().toISOString().split('T')[0];
+      // Dla strefy czasowej w Polsce
+      const today = new Date();
+      today.setMinutes(today.getMinutes() - today.getTimezoneOffset());
+      const todayStr = today.toISOString().split('T')[0];
       return e.date === todayStr;
   }
   
   if (currentView === 'tomorrow') {
       const tomorrow = new Date();
       tomorrow.setDate(tomorrow.getDate() + 1);
+      tomorrow.setMinutes(tomorrow.getMinutes() - tomorrow.getTimezoneOffset());
       const tomorrowStr = tomorrow.toISOString().split('T')[0];
       return e.date === tomorrowStr;
   }
 
-  // Logika dla 'all' (z uwzględnieniem filtrów z selectów)
   const selectedZjazd = zjazdSelect.value;
   const selectedSubject = subjectSelect.value;
   const selectedType = typeSelect.value;
@@ -641,7 +649,6 @@ if (location.protocol === 'https:' && 'serviceWorker' in navigator) navigator.se
 if (/iPhone|iPad|iPod/i.test(navigator.userAgent) && !navigator.standalone) document.getElementById('installHint').style.display = 'block';
 
 initFilters();
-// Domyślnie zaznaczamy "Pełny plan"
 navAll.classList.add('active');
 render();
 </script>
