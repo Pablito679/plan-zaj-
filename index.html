@@ -31,6 +31,17 @@
   --tab-bg: #263246;
   --details-bg: #f8fafc;
   --accent-blue: #2563eb;
+  
+  --type-wyklad-bg: #f3e8ff;
+  --type-wyklad-text: #7e22ce;
+  --type-cwiczenia-bg: #dcfce7;
+  --type-cwiczenia-text: #166534;
+  --type-inne-bg: #ffedd5;
+  --type-inne-text: #c2410c;
+  
+  --drawer-bg: #ffffff;
+  --drawer-shadow: 4px 0 24px rgba(0,0,0,0.1);
+  --overlay-bg: rgba(0,0,0,0.5);
 }
 
 [data-theme="dark"] {
@@ -53,11 +64,22 @@
   --tab-bg: #1e293b;
   --details-bg: #0f172a;
   --accent-blue: #38bdf8;
+  
+  --type-wyklad-bg: #4c1d95;
+  --type-wyklad-text: #d8b4fe;
+  --type-cwiczenia-bg: #064e3b;
+  --type-cwiczenia-text: #6ee7b7;
+  --type-inne-bg: #7c2d12;
+  --type-inne-text: #fdba74;
+  
+  --drawer-bg: #1e293b;
+  --drawer-shadow: 4px 0 24px rgba(0,0,0,0.5);
+  --overlay-bg: rgba(0,0,0,0.7);
 }
 
 *{
   box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent; /* Brak szarej poświaty przy dotknięciu na iPhonie */
+  -webkit-tap-highlight-color: transparent;
 }
 
 body{
@@ -66,22 +88,42 @@ body{
   color: var(--text);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   transition: background-color .2s, color .2s;
+  overflow-x: hidden;
+}
+
+body.drawer-open {
+  overflow: hidden;
 }
 
 header{
   background: var(--header-bg);
   color: #fff;
-  padding: 22px 18px;
+  padding: 16px 18px;
   position: sticky;
   top: 0;
   z-index: 10;
   box-shadow: 0 4px 18px rgba(0,0,0,.12);
+  display: flex;
+  align-items: center;
+  gap: 16px;
 }
 
-.wrap{max-width:1050px;margin:auto}
-.top{display:flex;align-items:center;justify-content:space-between;gap:12px}
-.title{font-size:22px;font-weight:800}
-.sub{font-size:13px;color:#cbd5e1;margin-top:4px}
+.menu-btn {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wrap{max-width:1050px;margin:auto;flex:1;}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;}
+.title{font-size:20px;font-weight:800}
+.sub{font-size:12px;color:#cbd5e1;margin-top:2px}
 
 .theme-toggle{
   background: var(--tab-bg);
@@ -112,7 +154,7 @@ main{padding:18px}
   flex: 1;
   min-width: 140px;
   cursor: pointer;
-  -webkit-appearance: none; /* Ładny wygląd na iOS */
+  -webkit-appearance: none;
   appearance: none;
   transition: all .2s;
 }
@@ -123,7 +165,6 @@ main{padding:18px}
 .dayname{font-weight:800}
 .badge{font-size:12px;padding:4px 8px;border-radius:999px;background:var(--badge-bg);color:var(--badge-text)}
 
-/* Karta z obsługą gestów mobilnych */
 .card {
   background: var(--card);
   border: 1px solid var(--line);
@@ -161,14 +202,25 @@ main{padding:18px}
 
 .time{font-weight:800;min-width:92px;font-size:14px;margin-top:2px}
 .content{flex:1}
-.subject{font-weight:800;font-size:15px}
+.subject{font-weight:800;font-size:15px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
 .meta{font-size:13px;color:var(--muted);margin-top:4px}
 .mode{font-size:11px;font-weight:800;padding:4px 7px;border-radius:999px;white-space:nowrap}
 .remote{background:var(--remote-bg);color:var(--remote-text)}
 .onsite{background:var(--onsite-bg);color:var(--onsite-text)}
 .break{background:var(--break-bg);color:var(--break-text)}
 
-/* Rozwijany panel ze szczegółami */
+.type-badge {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.type-wyklad { background: var(--type-wyklad-bg); color: var(--type-wyklad-text); }
+.type-cwiczenia { background: var(--type-cwiczenia-bg); color: var(--type-cwiczenia-text); }
+.type-inne { background: var(--type-inne-bg); color: var(--type-inne-text); }
+
 .loc-details {
   display: none;
   margin-top: 6px;
@@ -190,6 +242,104 @@ main{padding:18px}
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* Wysuwane menu */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--overlay-bg);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  z-index: 20;
+}
+
+.overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.drawer {
+  position: fixed;
+  top: 0;
+  left: -320px;
+  width: 300px;
+  max-width: 85%;
+  height: 100%;
+  background: var(--drawer-bg);
+  box-shadow: var(--drawer-shadow);
+  z-index: 30;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.drawer.open {
+  transform: translateX(320px);
+}
+
+.drawer-header {
+  padding: 24px 20px 16px;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.drawer-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.drawer-close {
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: 24px;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.drawer-content {
+  padding: 20px;
+  flex: 1;
+}
+
+.drawer-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.drawer-nav-item {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  padding: 14px 16px;
+  border-radius: 12px;
+  font-weight: 700;
+  color: var(--text);
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.drawer-nav-item:hover {
+  border-color: var(--accent-blue);
+}
+
+.drawer-nav-item.active {
+  background: var(--accent-blue);
+  color: #fff;
+  border-color: var(--accent-blue);
+}
+
 .empty{padding:28px;text-align:center;color:var(--muted)}
 .install{background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;border-radius:14px;padding:12px 14px;margin-bottom:16px;font-size:14px}
 [data-theme="dark"] .install{background:#451a03;border-color:#78350f;color:#fdba74}
@@ -198,12 +348,30 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:25px}
 </style>
 </head>
 <body>
+
+<div class="overlay" id="overlay"></div>
+
+<div class="drawer" id="drawer">
+  <div class="drawer-header">
+    <div class="drawer-title">Szybki przegląd</div>
+    <button class="drawer-close" id="closeDrawer">✕</button>
+  </div>
+  <div class="drawer-content">
+    <nav class="drawer-nav">
+      <button class="drawer-nav-item" id="navAll">📅 Pełny plan</button>
+      <button class="drawer-nav-item" id="navToday">⚡ Dzisiaj</button>
+      <button class="drawer-nav-item" id="navTomorrow">⏭️ Jutro</button>
+    </nav>
+  </div>
+</div>
+
 <header>
+  <button class="menu-btn" id="openDrawer">☰</button>
   <div class="wrap">
     <div class="top">
       <div>
         <div class="title">Plan zajęć</div>
-        <div class="sub">Ekonomia • Grupa 2 • semestr zimowy 2026/2027</div>
+        <div class="sub">Ekonomia • G2 • 2026/2027</div>
       </div>
       <button id="themeToggle" class="theme-toggle" aria-label="Zmień motyw">🌙</button>
     </div>
@@ -213,9 +381,10 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:25px}
 <main class="wrap">
   <div id="installHint" class="install" style="display:none">Na iPhonie wybierz <b>Udostępnij → Dodaj do ekranu początkowego</b>.</div>
   
-  <div class="controls">
+  <div class="controls" id="filterControls">
     <select id="zjazdSelect" class="select"><option value="">Wszystkie zjazdy</option></select>
     <select id="subjectSelect" class="select"><option value="">Wszystkie przedmioty</option></select>
+    <select id="typeSelect" class="select"><option value="">Wszystkie typy</option></select>
     <select id="mode" class="select">
       <option value="">Wszystkie tryby</option>
       <option value="Na miejscu">Na miejscu</option>
@@ -235,9 +404,58 @@ const app = document.getElementById('app');
 const mode = document.getElementById('mode');
 const zjazdSelect = document.getElementById('zjazdSelect');
 const subjectSelect = document.getElementById('subjectSelect');
+const typeSelect = document.getElementById('typeSelect');
 const themeToggle = document.getElementById('themeToggle');
+const filterControls = document.getElementById('filterControls');
 
-// Baza lokalizacji dla Olsztyna
+// Menu boczne
+const drawer = document.getElementById('drawer');
+const overlay = document.getElementById('overlay');
+const btnOpen = document.getElementById('openDrawer');
+const btnClose = document.getElementById('closeDrawer');
+const navAll = document.getElementById('navAll');
+const navToday = document.getElementById('navToday');
+const navTomorrow = document.getElementById('navTomorrow');
+
+let currentView = 'all'; // 'all', 'today', 'tomorrow'
+
+function toggleDrawer() {
+  drawer.classList.toggle('open');
+  overlay.classList.toggle('active');
+  document.body.classList.toggle('drawer-open');
+}
+
+btnOpen.addEventListener('click', toggleDrawer);
+btnClose.addEventListener('click', toggleDrawer);
+overlay.addEventListener('click', toggleDrawer);
+
+function setView(viewMode) {
+  currentView = viewMode;
+  
+  navAll.classList.remove('active');
+  navToday.classList.remove('active');
+  navTomorrow.classList.remove('active');
+  
+  if (viewMode === 'all') {
+    navAll.classList.add('active');
+    filterControls.style.display = 'flex';
+  } else if (viewMode === 'today') {
+    navToday.classList.add('active');
+    filterControls.style.display = 'none';
+  } else if (viewMode === 'tomorrow') {
+    navTomorrow.classList.add('active');
+    filterControls.style.display = 'none';
+  }
+  
+  toggleDrawer();
+  render();
+}
+
+navAll.addEventListener('click', () => setView('all'));
+navToday.addEventListener('click', () => setView('today'));
+navTomorrow.addEventListener('click', () => setView('tomorrow'));
+
+
 const LOCATIONS = [
   { keys: ['p19', '2/p19'], name: 'Budynek przy ul. R. Prawocheńskiego 19', address: 'ul. R. Prawocheńskiego 19, Olsztyn' },
   { keys: ['43', 'c1', '340/43'], name: 'Wydział Nauki o Żywności', address: 'pl. Cieszyński 1, Olsztyn' },
@@ -268,7 +486,14 @@ function resolveLocation(placeStr) {
   return { name: placeStr, address: placeStr + ', Olsztyn' };
 }
 
-// Zarządzanie Ciemnym Motywem
+function classifyType(typeStr) {
+  if (!typeStr) return { mainType: '', cssClass: '' };
+  const lower = typeStr.toLowerCase();
+  if (lower.includes('wykład')) return { mainType: 'Wykład', cssClass: 'type-wyklad' };
+  if (lower.includes('ćwiczenia')) return { mainType: 'Ćwiczenia', cssClass: 'type-cwiczenia' };
+  return { mainType: 'Inne', cssClass: 'type-inne' };
+}
+
 const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
 document.documentElement.setAttribute('data-theme', savedTheme);
 themeToggle.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
@@ -281,37 +506,69 @@ themeToggle.onclick = () => {
   themeToggle.textContent = newTheme === 'dark' ? '☀️' : '🌙';
 };
 
-// Tworzenie opcji dla filtrów
 function initFilters() {
   const zjazdy = [...new Set(data.map(e => e.zjazd))].sort((a, b) => a - b);
   zjazdy.forEach(z => {
-    const opt = document.createElement('option');
-    opt.value = z;
-    opt.textContent = `Zjazd ${z}`;
-    zjazdSelect.appendChild(opt);
+    if(z){
+      const opt = document.createElement('option');
+      opt.value = z;
+      opt.textContent = `Zjazd ${z}`;
+      zjazdSelect.appendChild(opt);
+    }
   });
 
   const subjects = [...new Set(data.filter(e => !e.break && !e.free).map(e => e.subject))].sort();
   subjects.forEach(s => {
+    if(s){
+      const opt = document.createElement('option');
+      opt.value = s;
+      opt.textContent = s;
+      subjectSelect.appendChild(opt);
+    }
+  });
+
+  const types = [...new Set(data.filter(e => !e.break && !e.free).map(e => classifyType(e.type).mainType))].filter(Boolean).sort();
+  types.forEach(t => {
     const opt = document.createElement('option');
-    opt.value = s;
-    opt.textContent = s;
-    subjectSelect.appendChild(opt);
+    opt.value = t;
+    opt.textContent = t;
+    typeSelect.appendChild(opt);
   });
 }
 
 const fmt = d => new Intl.DateTimeFormat('pl-PL', {day: 'numeric', month: 'long', year: 'numeric'}).format(new Date(d + 'T12:00:00'));
 
 function matches(e) {
+  if (currentView === 'today') {
+      const todayStr = new Date().toISOString().split('T')[0];
+      return e.date === todayStr;
+  }
+  
+  if (currentView === 'tomorrow') {
+      const tomorrow = new Date();
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      const tomorrowStr = tomorrow.toISOString().split('T')[0];
+      return e.date === tomorrowStr;
+  }
+
+  // Logika dla 'all' (z uwzględnieniem filtrów z selectów)
   const selectedZjazd = zjazdSelect.value;
   const selectedSubject = subjectSelect.value;
+  const selectedType = typeSelect.value;
   const selectedMode = mode.value;
 
   const matchZjazd = !selectedZjazd || String(e.zjazd) === selectedZjazd;
   const matchSubject = !selectedSubject || e.subject === selectedSubject;
   const matchMode = !selectedMode || e.mode === selectedMode;
+  
+  let matchType = true;
+  if (selectedType && !e.break && !e.free) {
+      matchType = classifyType(e.type).mainType === selectedType;
+  } else if (selectedType && (e.break || e.free)){
+      matchType = false;
+  }
 
-  return matchZjazd && matchSubject && matchMode;
+  return matchZjazd && matchSubject && matchMode && matchType;
 }
 
 function card(e) {
@@ -331,12 +588,23 @@ function card(e) {
     `;
   }
 
+  let typeBadgeHTML = '';
+  if(!e.break && !e.free && e.type) {
+      const typeInfo = classifyType(e.type);
+      if(typeInfo.mainType) {
+          typeBadgeHTML = `<span class="type-badge ${typeInfo.cssClass}">${typeInfo.mainType}</span>`;
+      }
+  }
+
   return `
     <div class="card" onclick="this.classList.toggle('open')">
       <div class="card-main">
         <div class="time">${e.time}</div>
         <div class="content">
-          <div class="subject">${e.subject}</div>
+          <div class="subject">
+             ${e.subject}
+             ${typeBadgeHTML}
+          </div>
           <div class="meta">${[e.type, e.place].filter(Boolean).join(' • ') || '—'}</div>
         </div>
         <span class="mode ${cls}">${label}</span>
@@ -357,17 +625,24 @@ function grouped(items) {
 
 function render() {
   let filtered = data.filter(matches);
-  app.innerHTML = filtered.length ? `<div class="section">${grouped(filtered)}</div>` : `<div class="empty">Brak zajęć pasujących do filtrów.</div>`;
+  let title = '';
+  if (currentView === 'today') title = '<h2>Zajęcia dzisiaj</h2>';
+  if (currentView === 'tomorrow') title = '<h2>Zajęcia jutro</h2>';
+
+  app.innerHTML = filtered.length ? `<div class="section">${title}${grouped(filtered)}</div>` : `<div class="empty">Brak zajęć na ten termin / pasujących do filtrów.</div>`;
 }
 
 zjazdSelect.onchange = render;
 subjectSelect.onchange = render;
+typeSelect.onchange = render;
 mode.onchange = render;
 
 if (location.protocol === 'https:' && 'serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');
 if (/iPhone|iPad|iPod/i.test(navigator.userAgent) && !navigator.standalone) document.getElementById('installHint').style.display = 'block';
 
 initFilters();
+// Domyślnie zaznaczamy "Pełny plan"
+navAll.classList.add('active');
 render();
 </script>
 </body>
