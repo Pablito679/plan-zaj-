@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#111827">
+<meta name="theme-color" content="#f8f6f0">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Plan zajęć">
@@ -12,25 +12,23 @@
 <title>Plan zajęć • Ekonomia G2</title>
 <style>
 :root {
-  --bg: #f5f7fb;
+  /* Jasny motyw */
+  --bg: #f8f6f0;
   --card: #ffffff;
-  --text: #172033;
-  --muted: #667085;
-  --line: #e6eaf0;
-  --shadow: 0 4px 20px rgba(16,24,40,.06);
-  --shadow-hover: 0 10px 25px rgba(16,24,40,.12);
-  --header-bg: #111827;
-  --badge-bg: #e8eefc;
-  --badge-text: #2853a6;
+  --text: #1e1b18;
+  --muted: #6b635b;
+  --line: #e8e2d5;
+  --shadow: 0 4px 24px rgba(255, 94, 98, 0.08);
+  --shadow-hover: 0 12px 32px rgba(255, 94, 98, 0.16);
+  --header-bg: linear-gradient(135deg, #ff5e62 0%, #ff9966 100%);
+  --header-text: #ffffff;
+  
   --remote-bg: #e8f0ff;
   --remote-text: #1d4ed8;
   --onsite-bg: #eaf8ef;
   --onsite-text: #15803d;
   --break-bg: #f1f3f5;
   --break-text: #64748b;
-  --tab-bg: #263246;
-  --details-bg: #f8fafc;
-  --accent-blue: #2563eb;
   
   --type-wyklad-bg: #f3e8ff;
   --type-wyklad-text: #7e22ce;
@@ -40,30 +38,29 @@
   --type-inne-text: #c2410c;
   
   --drawer-bg: #ffffff;
-  --drawer-shadow: 4px 0 24px rgba(0,0,0,0.1);
-  --overlay-bg: rgba(0,0,0,0.5);
+  --drawer-shadow: 6px 0 30px rgba(0,0,0,0.12);
+  --overlay-bg: rgba(0,0,0,0.45);
+  --switch-bg: #d6cebf;
+  --switch-handle: #ffffff;
 }
 
 [data-theme="dark"] {
-  --bg: #0f172a;
-  --card: #1e293b;
-  --text: #f8fafc;
+  --bg: #040d12;
+  --card: #1b2d3c;
+  --text: #ffffff;
   --muted: #94a3b8;
-  --line: #334155;
-  --shadow: 0 4px 20px rgba(0,0,0,.25);
-  --shadow-hover: 0 12px 30px rgba(0,0,0,.45);
-  --header-bg: #020617;
-  --badge-bg: #1e3a8a;
-  --badge-text: #93c5fd;
+  --line: #3b5266;
+  --shadow: 0 8px 30px rgba(0,0,0,.8);
+  --shadow-hover: 0 14px 38px rgba(0,0,0,.95);
+  --header-bg: linear-gradient(135deg, #11212D 0%, #040d12 100%);
+  --header-text: #ffffff;
+  
   --remote-bg: #1e3a8a;
   --remote-text: #93c5fd;
   --onsite-bg: #14532d;
   --onsite-text: #86efac;
   --break-bg: #334155;
   --break-text: #cbd5e1;
-  --tab-bg: #1e293b;
-  --details-bg: #0f172a;
-  --accent-blue: #38bdf8;
   
   --type-wyklad-bg: #4c1d95;
   --type-wyklad-text: #d8b4fe;
@@ -72,9 +69,11 @@
   --type-inne-bg: #7c2d12;
   --type-inne-text: #fdba74;
   
-  --drawer-bg: #1e293b;
-  --drawer-shadow: 4px 0 24px rgba(0,0,0,0.5);
-  --overlay-bg: rgba(0,0,0,0.7);
+  --drawer-bg: #1b2d3c;
+  --drawer-shadow: 6px 0 32px rgba(0,0,0,0.9);
+  --overlay-bg: rgba(0,0,0,0.85);
+  --switch-bg: #11212D;
+  --switch-handle: #ffffff;
 }
 
 *{
@@ -87,7 +86,7 @@ body{
   background: var(--bg);
   color: var(--text);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  transition: background-color .2s, color .2s;
+  transition: background-color .25s, color .25s;
   overflow-x: hidden;
 }
 
@@ -97,87 +96,258 @@ body.drawer-open {
 
 header{
   background: var(--header-bg);
-  color: #fff;
-  padding: calc(16px + env(safe-area-inset-top)) 18px 16px;
+  color: var(--header-text);
+  padding: calc(18px + env(safe-area-inset-top)) 18px 18px;
   position: sticky;
   top: 0;
   z-index: 10;
-  box-shadow: 0 4px 18px rgba(0,0,0,.12);
+  box-shadow: 0 4px 20px rgba(0,0,0,.25);
   display: flex;
   align-items: center;
-  gap: 16px;
+  justify-content: space-between;
+  gap: 12px;
+  transition: all .25s;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+}
+
+.header-clock {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.clock-time {
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: -0.2px;
+  line-height: 1.2;
+}
+
+.clock-date {
+  font-size: 10px;
+  opacity: 0.85;
+  text-transform: capitalize;
+  margin-top: 1px;
 }
 
 .menu-btn {
-  background: transparent;
+  background: rgba(255, 255, 255, 0.15);
   border: none;
-  color: #fff;
-  font-size: 26px;
+  color: var(--header-text);
+  font-size: 22px;
   cursor: pointer;
-  padding: 8px;
-  margin-left: -8px;
+  padding: 8px 12px;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: transform 0.1s, background 0.2s;
+  flex-shrink: 0;
+}
+
+.menu-btn:active {
+  transform: scale(0.92);
 }
 
 .wrap{max-width:1050px;margin:auto;flex:1;}
 .top{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;}
-.title{font-size:20px;font-weight:800}
-.sub{font-size:12px;color:#cbd5e1;margin-top:2px}
+.title{font-size:19px;font-weight:800;letter-spacing: -0.3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.sub{font-size:11px;opacity: 0.85;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 
-.theme-toggle{
-  background: var(--tab-bg);
-  color: #fff;
+/* Przełącznik suwakowy */
+.theme-switch-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 52px;
+  height: 28px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: var(--switch-bg);
+  transition: .3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 28px;
   border: 1px solid var(--line);
-  border-radius: 10px;
-  padding: 10px 14px;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 22px;
+  width: 22px;
+  left: 2px;
+  bottom: 2px;
+  background-color: var(--switch-handle);
+  transition: .3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+input:checked + .slider {
+  background: #11212D;
+  border: 1px solid #3b5266;
+}
+
+input:checked + .slider:before {
+  transform: translateX(24px);
+  background-color: #ffffff;
+}
+
+.slider-icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 11px;
+  pointer-events: none;
+  transition: .3s;
+  z-index: 2;
+}
+
+.icon-sun {
+  right: 7px;
+  opacity: 1;
+}
+
+.icon-moon {
+  left: 7px;
+  opacity: 0;
+}
+
+input:checked ~ .slider .icon-sun {
+  opacity: 0;
+}
+
+input:checked ~ .slider .icon-moon {
+  opacity: 1;
+}
+
+main{padding:18px}
+
+/* Wycentrowany panel filtrów */
+.controls {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.filter-group {
+  flex: 1;
+  min-width: 150px;
+  max-width: 220px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.filter-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--muted);
+  margin-left: 4px;
+}
+
+.select, .date-input{
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--text);
+  border-radius: 14px;
+  padding: 12px 14px;
+  font-size: 14px;
+  outline: none;
+  width: 100%;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  transition: all .2s;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.date-input {
+  cursor: text;
+}
+
+[data-theme="dark"] .date-input::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
+
+/* Okrągły przycisk resetowania filtrów ze zmiotką */
+.reset-btn {
+  background: var(--card);
+  border: 1px solid var(--line);
+  color: var(--text);
+  width: 47px;
+  height: 47px;
+  border-radius: 50%;
   font-size: 16px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform .1s, background-color .2s;
+  transition: all 0.2s;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  flex-shrink: 0;
 }
-.theme-toggle:active{transform:scale(0.92)}
 
-main{padding:18px}
-.controls{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+.reset-btn:hover {
+  border-color: var(--text);
+  transform: translateY(-1px);
+}
 
-.select{
-  border: 1px solid var(--line);
-  background: var(--card);
-  color: var(--text);
-  border-radius: 12px;
-  padding: 11px 13px;
-  font-size: 15px;
-  outline: none;
-  flex: 1;
-  min-width: 140px;
-  cursor: pointer;
-  -webkit-appearance: none;
-  appearance: none;
-  transition: all .2s;
+.reset-btn:active {
+  transform: scale(0.92);
 }
 
 .section{margin:18px 0}
-.day{margin-bottom:18px}
-.dayhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
-.dayname{font-weight:800}
-.badge{font-size:12px;padding:4px 8px;border-radius:999px;background:var(--badge-bg);color:var(--badge-text)}
+.day{margin-bottom:20px}
+.dayhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.dayname{font-weight:800; font-size: 15px;}
+.badge{font-size:12px;padding:4px 10px;border-radius:999px;background:var(--card);color:var(--text);font-weight: 700; border: 1px solid var(--line); box-shadow: 0 2px 6px rgba(0,0,0,0.2);}
 
 .card {
   background: var(--card);
   border: 1px solid var(--line);
-  border-radius: 15px;
-  padding: 14px 16px;
+  border-radius: 16px;
+  padding: 16px;
   margin: 10px 0;
   box-shadow: var(--shadow);
   display: flex;
   flex-direction: column;
   gap: 8px;
   cursor: pointer;
-  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s, border-color 0.2s;
   user-select: none;
   touch-action: manipulation;
 }
@@ -186,7 +356,7 @@ main{padding:18px}
   .card:hover {
     transform: translateY(-2px);
     box-shadow: var(--shadow-hover);
-    border-color: var(--accent-blue);
+    border-color: #ffffff;
   }
 }
 
@@ -196,7 +366,7 @@ main{padding:18px}
 
 .card-main {
   display: flex;
-  gap: 13px;
+  gap: 14px;
   align-items: flex-start;
   width: 100%;
 }
@@ -205,15 +375,15 @@ main{padding:18px}
 .content{flex:1}
 .subject{font-weight:800;font-size:15px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
 .meta{font-size:13px;color:var(--muted);margin-top:4px}
-.mode{font-size:11px;font-weight:800;padding:4px 7px;border-radius:999px;white-space:nowrap}
-.remote{background:var(--remote-bg);color:var(--remote-text)}
-.onsite{background:var(--onsite-bg);color:var(--onsite-text)}
-.break{background:var(--break-bg);color:var(--break-text)}
+.mode{font-size:11px;font-weight:800;padding:5px 9px;border-radius:999px;white-space:nowrap}
+.remote{background:var(--remote-bg);color:var(--remote-text);}
+.onsite{background:var(--onsite-bg);color:var(--onsite-text);}
+.break{background:var(--break-bg);color:var(--break-text);}
 
 .type-badge {
   font-size: 11px;
   font-weight: 700;
-  padding: 2px 6px;
+  padding: 3px 8px;
   border-radius: 6px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -224,10 +394,10 @@ main{padding:18px}
 
 .loc-details {
   display: none;
-  margin-top: 6px;
+  margin-top: 8px;
   padding: 12px;
-  background: var(--details-bg);
-  border-radius: 10px;
+  background: var(--bg);
+  border-radius: 12px;
   border: 1px dashed var(--line);
   font-size: 13px;
   line-height: 1.5;
@@ -255,6 +425,7 @@ main{padding:18px}
   visibility: hidden;
   transition: opacity 0.3s ease, visibility 0.3s ease;
   z-index: 20;
+  backdrop-filter: blur(4px);
 }
 
 .overlay.active {
@@ -277,6 +448,7 @@ main{padding:18px}
   flex-direction: column;
   overflow-y: auto;
   padding-top: env(safe-area-inset-top);
+  border-right: 1px solid var(--line);
 }
 
 .drawer.open {
@@ -298,13 +470,17 @@ main{padding:18px}
 }
 
 .drawer-close {
-  background: none;
-  border: none;
-  color: var(--muted);
-  font-size: 28px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  color: var(--text);
+  font-size: 18px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
   cursor: pointer;
-  padding: 8px;
-  margin-right: -8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .drawer-content {
@@ -315,14 +491,14 @@ main{padding:18px}
 .drawer-nav {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
 }
 
 .drawer-nav-item {
-  background: var(--bg);
+  background: var(--card);
   border: 1px solid var(--line);
   padding: 14px 16px;
-  border-radius: 12px;
+  border-radius: 14px;
   font-weight: 700;
   color: var(--text);
   cursor: pointer;
@@ -330,23 +506,24 @@ main{padding:18px}
   transition: all 0.2s;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
 }
 
 .drawer-nav-item:hover {
-  border-color: var(--accent-blue);
+  border-color: var(--text);
 }
 
 .drawer-nav-item.active {
-  background: var(--accent-blue);
-  color: #fff;
-  border-color: var(--accent-blue);
+  background: var(--card);
+  color: var(--text);
+  border: 2px solid var(--text);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-.empty{padding:28px;text-align:center;color:var(--muted)}
-.install{background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;border-radius:14px;padding:12px 14px;margin-bottom:16px;font-size:14px}
-[data-theme="dark"] .install{background:#451a03;border-color:#78350f;color:#fdba74}
-footer{text-align:center;color:var(--muted);font-size:12px;padding:25px}
+.empty{padding:32px;text-align:center;color:var(--muted);font-weight: 500;}
+.install{background: var(--card); border: 1px solid var(--line); color: var(--text); border-radius: 14px; padding: 12px 16px; margin-bottom: 16px; font-size: 14px; font-weight: 500; box-shadow: 0 4px 12px rgba(0,0,0,0.3);}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:30px}
 @media(min-width:800px){main{padding:25px}}
 </style>
 </head>
@@ -362,20 +539,33 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:25px}
   <div class="drawer-content">
     <nav class="drawer-nav">
       <button class="drawer-nav-item" id="navAll">📅 Pełny plan</button>
-      <button class="drawer-nav-item" id="navNextDays">⚡ Najbliższe zjazdy</button>
+      <button class="drawer-nav-item" id="navActiveFuture">⚡ Aktualne i nadchodzące zjazdy</button>
     </nav>
   </div>
 </div>
 
 <header>
-  <button class="menu-btn" id="openDrawer">☰</button>
-  <div class="wrap">
-    <div class="top">
-      <div>
-        <div class="title">Plan zajęć</div>
-        <div class="sub">Ekonomia • G2 • 2026/2027</div>
-      </div>
-      <button id="themeToggle" class="theme-toggle" aria-label="Zmień motyw">🌙</button>
+  <div class="header-left">
+    <button class="menu-btn" id="openDrawer">☰</button>
+    <div style="min-width:0;">
+      <div class="title">Plan zajęć</div>
+      <div class="sub">Ekonomia • G2 • 2026/2027</div>
+    </div>
+  </div>
+  
+  <div class="header-right">
+    <div class="header-clock">
+      <div class="clock-time" id="clockTime">--:--:--</div>
+      <div class="clock-date" id="clockDate">--.--.----</div>
+    </div>
+    <div class="theme-switch-wrapper">
+      <label class="switch">
+        <input type="checkbox" id="themeCheckbox">
+        <span class="slider">
+          <span class="slider-icon icon-moon">🌙</span>
+          <span class="slider-icon icon-sun">☀️</span>
+        </span>
+      </label>
     </div>
   </div>
 </header>
@@ -383,15 +573,32 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:25px}
 <main class="wrap">
   <div id="installHint" class="install" style="display:none">Na iPhonie wybierz <b>Udostępnij → Dodaj do ekranu początkowego</b>.</div>
   
-  <div class="controls" id="filterControls">
-    <select id="zjazdSelect" class="select"><option value="">Wszystkie zjazdy</option></select>
-    <select id="subjectSelect" class="select"><option value="">Wszystkie przedmioty</option></select>
-    <select id="typeSelect" class="select"><option value="">Wszystkie typy</option></select>
-    <select id="mode" class="select">
-      <option value="">Wszystkie tryby</option>
-      <option value="Na miejscu">Na miejscu</option>
-      <option value="Zdalnie">Zdalnie</option>
-    </select>
+  <div class="controls">
+    <div class="filter-group">
+      <span class="filter-label">NR zjazdu</span>
+      <select id="zjazdSelect" class="select"><option value="">Wszystkie zjazdy</option></select>
+    </div>
+    <div class="filter-group">
+      <span class="filter-label">Przedmioty</span>
+      <select id="subjectSelect" class="select"><option value="">Wszystkie przedmioty</option></select>
+    </div>
+    <div class="filter-group">
+      <span class="filter-label">Typ zajęć</span>
+      <select id="typeSelect" class="select"><option value="">Wszystkie typy</option></select>
+    </div>
+    <div class="filter-group">
+      <span class="filter-label">Forma zjazdu</span>
+      <select id="mode" class="select">
+        <option value="">Wszystkie tryby</option>
+        <option value="Na miejscu">Na miejscu</option>
+        <option value="Zdalnie">Zdalnie</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <span class="filter-label">Data</span>
+      <input type="date" id="dateFilter" class="date-input" title="Wybierz datę">
+    </div>
+    <button class="reset-btn" id="resetFilters" title="Wyczyść filtry">🧹</button>
   </div>
   
   <div id="app"></div>
@@ -407,18 +614,30 @@ const mode = document.getElementById('mode');
 const zjazdSelect = document.getElementById('zjazdSelect');
 const subjectSelect = document.getElementById('subjectSelect');
 const typeSelect = document.getElementById('typeSelect');
-const themeToggle = document.getElementById('themeToggle');
-const filterControls = document.getElementById('filterControls');
+const dateFilter = document.getElementById('dateFilter');
+const resetFiltersBtn = document.getElementById('resetFilters');
+const themeCheckbox = document.getElementById('themeCheckbox');
 
-// Menu boczne
 const drawer = document.getElementById('drawer');
 const overlay = document.getElementById('overlay');
 const btnOpen = document.getElementById('openDrawer');
 const btnClose = document.getElementById('closeDrawer');
 const navAll = document.getElementById('navAll');
-const navNextDays = document.getElementById('navNextDays');
+const navActiveFuture = document.getElementById('navActiveFuture');
 
-let currentView = 'all'; // 'all', 'nextDays'
+// Aktualizacja zegarka na żywo
+function updateClock() {
+  const now = new Date();
+  const timeStr = now.toLocaleTimeString('pl-PL', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+  const dateStr = now.toLocaleDateString('pl-PL', { weekday: 'short', day: 'numeric', month: 'long' });
+  
+  document.getElementById('clockTime').textContent = timeStr;
+  document.getElementById('clockDate').textContent = dateStr;
+}
+setInterval(updateClock, 1000);
+updateClock();
+
+let currentView = 'all';
 
 function toggleDrawer() {
   drawer.classList.toggle('open');
@@ -434,14 +653,12 @@ function setView(viewMode) {
   currentView = viewMode;
   
   navAll.classList.remove('active');
-  navNextDays.classList.remove('active');
+  navActiveFuture.classList.remove('active');
   
   if (viewMode === 'all') {
     navAll.classList.add('active');
-    filterControls.style.display = 'flex';
-  } else if (viewMode === 'nextDays') {
-    navNextDays.classList.add('active');
-    filterControls.style.display = 'none';
+  } else if (viewMode === 'activeFuture') {
+    navActiveFuture.classList.add('active');
   }
   
   toggleDrawer();
@@ -449,8 +666,7 @@ function setView(viewMode) {
 }
 
 navAll.addEventListener('click', () => setView('all'));
-navNextDays.addEventListener('click', () => setView('nextDays'));
-
+navActiveFuture.addEventListener('click', () => setView('activeFuture'));
 
 const LOCATIONS = [
   { keys: ['p19', '2/p19'], name: 'Budynek przy ul. R. Prawocheńskiego 19', address: 'ul. R. Prawocheńskiego 19, Olsztyn' },
@@ -461,7 +677,7 @@ const LOCATIONS = [
   { keys: ['ob. 1', 'ob1'], name: 'Wydział Humanistyczny (Obiekt 1)', address: 'ul. Kurta Obitza 1, Olsztyn' },
   { keys: ['ocz. 4', 'ocz 4', 'o4', 'ocz.4', 'aula/ocz. 4'], name: 'Wydział Biologii i Biotechnologii', address: 'ul. M. Oczapowskiego 4, Olsztyn' },
   { keys: ['ocz. 11', 'o11'], name: 'Wydział Nauk Technicznych', address: 'ul. M. Oczapowskiego 11, Olsztyn' },
-  { keys: ['p15', '1/p15'], name: 'Budynek przy ul. R. Prawocheńskiego 15', address: 'ul. R. Prawocheńskiego 15, Olsztyn' },
+  { keys: ['p15', '1/p15'], name: 'Budynek przy ul. R. Prawocheńskiego 15', address: 'ul. M. Oczapowskiego 15, Olsztyn' },
   { keys: ['rci'], name: 'Regionalne Centrum Informatyczne', address: 'ul. Słoneczna 54, Olsztyn' },
   { keys: ['janowskiego'], name: 'Aula prof. Janowskiego', address: 'ul. M. Oczapowskiego 13, Olsztyn' },
   { keys: ['tarczyńskiego'], name: 'Aula prof. Tarczyńskiego (1. piętro)', address: 'ul. M. Oczapowskiego 13, Olsztyn' },
@@ -492,14 +708,12 @@ function classifyType(typeStr) {
 
 const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
 document.documentElement.setAttribute('data-theme', savedTheme);
-themeToggle.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+themeCheckbox.checked = (savedTheme === 'dark');
 
-themeToggle.onclick = () => {
-  const currentTheme = document.documentElement.getAttribute('data-theme');
-  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+themeCheckbox.onchange = () => {
+  const newTheme = themeCheckbox.checked ? 'dark' : 'light';
   document.documentElement.setAttribute('data-theme', newTheme);
   localStorage.setItem('theme', newTheme);
-  themeToggle.textContent = newTheme === 'dark' ? '☀️' : '🌙';
 };
 
 function initFilters() {
@@ -535,27 +749,24 @@ function initFilters() {
 const fmt = d => new Intl.DateTimeFormat('pl-PL', {day: 'numeric', month: 'long', year: 'numeric'}).format(new Date(d + 'T12:00:00'));
 
 function matches(e) {
-  if (currentView === 'nextDays') {
-      const today = new Date();
-      today.setMinutes(today.getMinutes() - today.getTimezoneOffset());
-      const todayStr = today.toISOString().split('T')[0];
+  const today = new Date();
+  today.setMinutes(today.getMinutes() - today.getTimezoneOffset());
+  const todayStr = today.toISOString().split('T')[0];
 
-      const tomorrow = new Date();
-      tomorrow.setDate(tomorrow.getDate() + 1);
-      tomorrow.setMinutes(tomorrow.getMinutes() - tomorrow.getTimezoneOffset());
-      const tomorrowStr = tomorrow.toISOString().split('T')[0];
-
-      return e.date === todayStr || e.date === tomorrowStr;
+  if (currentView === 'activeFuture') {
+      if (e.date < todayStr) return false;
   }
 
   const selectedZjazd = zjazdSelect.value;
   const selectedSubject = subjectSelect.value;
   const selectedType = typeSelect.value;
   const selectedMode = mode.value;
+  const selectedDate = dateFilter.value;
 
   const matchZjazd = !selectedZjazd || String(e.zjazd) === selectedZjazd;
   const matchSubject = !selectedSubject || e.subject === selectedSubject;
   const matchMode = !selectedMode || e.mode === selectedMode;
+  const matchDate = !selectedDate || e.date === selectedDate;
   
   let matchType = true;
   if (selectedType && !e.break && !e.free) {
@@ -564,7 +775,7 @@ function matches(e) {
       matchType = false;
   }
 
-  return matchZjazd && matchSubject && matchMode && matchType;
+  return matchZjazd && matchSubject && matchMode && matchDate && matchType;
 }
 
 function card(e) {
@@ -621,15 +832,42 @@ function grouped(items) {
 
 function render() {
   let filtered = data.filter(matches);
-  let title = currentView === 'nextDays' ? '<h2>Najbliższe zjazdy (Dzisiaj i Jutro)</h2>' : '';
+  let title = currentView === 'activeFuture' ? '<h2>Aktualne i nadchodzące zjazdy</h2>' : '';
 
   app.innerHTML = filtered.length ? `<div class="section">${title}${grouped(filtered)}</div>` : `<div class="empty">Brak zajęć na ten termin / pasujących do filtrów.</div>`;
 }
+
+// Sprawdzenie i blokowanie dni w filtrze daty (pon.-czw.)
+dateFilter.oninput = (e) => {
+  if (!e.target.value) {
+    render();
+    return;
+  }
+  const selectedDate = new Date(e.target.value + 'T12:00:00');
+  const dayOfWeek = selectedDate.getDay(); 
+  
+  if (dayOfWeek >= 1 && dayOfWeek <= 4) {
+    alert('Wybieraj tylko piątki, soboty lub niedziele (dni zjazdowe).');
+    e.target.value = '';
+  }
+  render();
+};
 
 zjazdSelect.onchange = render;
 subjectSelect.onchange = render;
 typeSelect.onchange = render;
 mode.onchange = render;
+dateFilter.onchange = render;
+
+// Funkcja resetowania wszystkich filtrów
+resetFiltersBtn.onclick = () => {
+  zjazdSelect.value = '';
+  subjectSelect.value = '';
+  typeSelect.value = '';
+  mode.value = '';
+  dateFilter.value = '';
+  render();
+};
 
 if (location.protocol === 'https:' && 'serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');
 if (/iPhone|iPad|iPod/i.test(navigator.userAgent) && !navigator.standalone) document.getElementById('installHint').style.display = 'block';
