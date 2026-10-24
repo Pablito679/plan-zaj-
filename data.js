@@ -102,20 +102,6 @@ window.SCHEDULE_DATA = [
     "termin": "09-11.10.2026",
     "date": "2026-10-11",
     "day": "Niedziela",
-    "time": "1h 15min",
-    "subject": "Przerwa",
-    "type": "",
-    "place": "",
-    "mode": "Na miejscu",
-    "break": true,
-    "free": false,
-    "id": "0eh082smp"
-  },
-  {
-    "zjazd": 1,
-    "termin": "09-11.10.2026",
-    "date": "2026-10-11",
-    "day": "Niedziela",
     "time": "9:45–11:00",
     "subject": "Zarządzanie",
     "type": "ćwiczenia",
@@ -1858,6 +1844,19 @@ window.SCHEDULE_DATA = [
     "place": "",
     "mode": "",
     "break": true,
+    "free": false
+  },
+  {
+    "id": "xt3b74t53",
+    "zjazd": "1",
+    "date": "2026-10-09",
+    "time": "5:01-5:02",
+    "day": "Piątek",
+    "subject": "test",
+    "type": "Wykład",
+    "place": "test",
+    "mode": "Na miejscu",
+    "break": false,
     "free": false
   }
 ];
