@@ -1858,18 +1858,5 @@ window.SCHEDULE_DATA = [
     "mode": "",
     "break": true,
     "free": false
-  },
-  {
-    "id": "3msn4qmx3",
-    "zjazd": "3",
-    "date": "2026-10-24",
-    "time": "5:15-6:13",
-    "day": "Sobota",
-    "subject": "test",
-    "type": "Wykład",
-    "place": "test",
-    "mode": "Na miejscu",
-    "break": false,
-    "free": false
   }
 ];
