@@ -1845,5 +1845,18 @@ window.SCHEDULE_DATA = [
     "mode": "",
     "break": true,
     "free": false
+  },
+  {
+    "id": "hx2a4zb0w",
+    "zjazd": "3",
+    "date": "2026-10-25",
+    "time": "8:15-9:30",
+    "day": "Niedziela",
+    "subject": "",
+    "type": "",
+    "place": "",
+    "mode": "",
+    "break": true,
+    "free": false
   }
 ];
