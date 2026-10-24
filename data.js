@@ -536,20 +536,6 @@ window.SCHEDULE_DATA = [
     "termin": "06-08.11.2026",
     "date": "2026-11-07",
     "day": "Sobota",
-    "time": "30min",
-    "subject": "Przerwa",
-    "type": "",
-    "place": "",
-    "mode": "Na miejscu",
-    "break": true,
-    "free": false,
-    "id": "3rud44y7d"
-  },
-  {
-    "zjazd": 4,
-    "termin": "06-08.11.2026",
-    "date": "2026-11-07",
-    "day": "Sobota",
     "time": "12:15–16:15",
     "subject": "Język obcy 1",
     "type": "",
@@ -558,20 +544,6 @@ window.SCHEDULE_DATA = [
     "break": false,
     "free": false,
     "id": "ii3t3jn2u"
-  },
-  {
-    "zjazd": 4,
-    "termin": "06-08.11.2026",
-    "date": "2026-11-07",
-    "day": "Sobota",
-    "time": "45min",
-    "subject": "Przerwa",
-    "type": "",
-    "place": "",
-    "mode": "Na miejscu",
-    "break": true,
-    "free": false,
-    "id": "nzijo5ktm"
   },
   {
     "zjazd": 4,
@@ -662,20 +634,6 @@ window.SCHEDULE_DATA = [
     "termin": "13-15.11.2026",
     "date": "2026-11-14",
     "day": "Sobota",
-    "time": "30min",
-    "subject": "Przerwa",
-    "type": "",
-    "place": "",
-    "mode": "Zdalnie",
-    "break": true,
-    "free": false,
-    "id": "l808a6e7p"
-  },
-  {
-    "zjazd": 5,
-    "termin": "13-15.11.2026",
-    "date": "2026-11-14",
-    "day": "Sobota",
     "time": "12:15–13:45",
     "subject": "Przedmiot do wyboru II KTE",
     "type": "wykład zdalny",
@@ -698,20 +656,6 @@ window.SCHEDULE_DATA = [
     "break": false,
     "free": false,
     "id": "78fmy11bg"
-  },
-  {
-    "zjazd": 5,
-    "termin": "13-15.11.2026",
-    "date": "2026-11-14",
-    "day": "Sobota",
-    "time": "30min",
-    "subject": "Przerwa",
-    "type": "",
-    "place": "",
-    "mode": "Zdalnie",
-    "break": true,
-    "free": false,
-    "id": "aft7z3cs4"
   },
   {
     "zjazd": 5,
@@ -858,20 +802,6 @@ window.SCHEDULE_DATA = [
     "termin": "27-29.11.2026",
     "date": "2026-11-28",
     "day": "Sobota",
-    "time": "30min",
-    "subject": "Przerwa",
-    "type": "",
-    "place": "",
-    "mode": "Na miejscu",
-    "break": true,
-    "free": false,
-    "id": "sj7zvkb8c"
-  },
-  {
-    "zjazd": 6,
-    "termin": "27-29.11.2026",
-    "date": "2026-11-28",
-    "day": "Sobota",
     "time": "12:15–16:15",
     "subject": "Język obcy 1",
     "type": "",
@@ -880,20 +810,6 @@ window.SCHEDULE_DATA = [
     "break": false,
     "free": false,
     "id": "v8v5q1hqa"
-  },
-  {
-    "zjazd": 6,
-    "termin": "27-29.11.2026",
-    "date": "2026-11-28",
-    "day": "Sobota",
-    "time": "45min",
-    "subject": "Przerwa",
-    "type": "",
-    "place": "",
-    "mode": "Na miejscu",
-    "break": true,
-    "free": false,
-    "id": "s5y1tqqle"
   },
   {
     "zjazd": 6,
@@ -1006,20 +922,6 @@ window.SCHEDULE_DATA = [
     "break": false,
     "free": false,
     "id": "3qr5z0ywx"
-  },
-  {
-    "zjazd": 7,
-    "termin": "04-06.12.2026",
-    "date": "2026-12-05",
-    "day": "Sobota",
-    "time": "30min",
-    "subject": "Przerwa",
-    "type": "",
-    "place": "",
-    "mode": "Zdalnie",
-    "break": true,
-    "free": false,
-    "id": "f47j7tpmd"
   },
   {
     "zjazd": 7,
@@ -1180,20 +1082,6 @@ window.SCHEDULE_DATA = [
     "termin": "11-13.12.2026",
     "date": "2026-12-12",
     "day": "Sobota",
-    "time": "30min",
-    "subject": "Przerwa",
-    "type": "",
-    "place": "",
-    "mode": "Na miejscu",
-    "break": true,
-    "free": false,
-    "id": "0eye0chwb"
-  },
-  {
-    "zjazd": 8,
-    "termin": "11-13.12.2026",
-    "date": "2026-12-12",
-    "day": "Sobota",
     "time": "12:15–16:15",
     "subject": "Język obcy 1",
     "type": "",
@@ -1202,20 +1090,6 @@ window.SCHEDULE_DATA = [
     "break": false,
     "free": false,
     "id": "ka4yuxa28"
-  },
-  {
-    "zjazd": 8,
-    "termin": "11-13.12.2026",
-    "date": "2026-12-12",
-    "day": "Sobota",
-    "time": "45min",
-    "subject": "Przerwa",
-    "type": "",
-    "place": "",
-    "mode": "Na miejscu",
-    "break": true,
-    "free": false,
-    "id": "t2438516k"
   },
   {
     "zjazd": 8,
@@ -1328,20 +1202,6 @@ window.SCHEDULE_DATA = [
     "break": false,
     "free": false,
     "id": "56hwqn6ox"
-  },
-  {
-    "zjazd": 9,
-    "termin": "08-10.01.2027",
-    "date": "2027-01-09",
-    "day": "Sobota",
-    "time": "30min",
-    "subject": "Przerwa",
-    "type": "",
-    "place": "",
-    "mode": "Zdalnie",
-    "break": true,
-    "free": false,
-    "id": "88pni6n47"
   },
   {
     "zjazd": 9,
@@ -1474,20 +1334,6 @@ window.SCHEDULE_DATA = [
     "termin": "15-17.01.2027",
     "date": "2027-01-16",
     "day": "Sobota",
-    "time": "30min",
-    "subject": "Przerwa",
-    "type": "",
-    "place": "",
-    "mode": "Na miejscu",
-    "break": true,
-    "free": false,
-    "id": "x2mo2z71g"
-  },
-  {
-    "zjazd": 10,
-    "termin": "15-17.01.2027",
-    "date": "2027-01-16",
-    "day": "Sobota",
     "time": "12:15–16:15",
     "subject": "Język obcy 1",
     "type": "",
@@ -1496,20 +1342,6 @@ window.SCHEDULE_DATA = [
     "break": false,
     "free": false,
     "id": "stfbs7ix1"
-  },
-  {
-    "zjazd": 10,
-    "termin": "15-17.01.2027",
-    "date": "2027-01-16",
-    "day": "Sobota",
-    "time": "45min",
-    "subject": "Przerwa",
-    "type": "",
-    "place": "",
-    "mode": "Na miejscu",
-    "break": true,
-    "free": false,
-    "id": "hjhx1up6x"
   },
   {
     "zjazd": 10,
@@ -1552,20 +1384,6 @@ window.SCHEDULE_DATA = [
     "break": false,
     "free": false,
     "id": "nxxs0gli8"
-  },
-  {
-    "zjazd": 10,
-    "termin": "15-17.01.2027",
-    "date": "2027-01-17",
-    "day": "Niedziela",
-    "time": "30min",
-    "subject": "Przerwa",
-    "type": "",
-    "place": "",
-    "mode": "Zdalnie",
-    "break": true,
-    "free": false,
-    "id": "h0ltiaaei"
   },
   {
     "zjazd": 10,
@@ -1636,20 +1454,6 @@ window.SCHEDULE_DATA = [
     "break": false,
     "free": false,
     "id": "jw4mjdlmf"
-  },
-  {
-    "zjazd": 11,
-    "termin": "22-24.01.2027",
-    "date": "2027-01-23",
-    "day": "Sobota",
-    "time": "30min",
-    "subject": "Przerwa",
-    "type": "",
-    "place": "",
-    "mode": "Zdalnie",
-    "break": true,
-    "free": false,
-    "id": "1pr5flcm3"
   },
   {
     "zjazd": 11,
@@ -1748,20 +1552,6 @@ window.SCHEDULE_DATA = [
     "break": false,
     "free": false,
     "id": "9j05z0rne"
-  },
-  {
-    "zjazd": 12,
-    "termin": "29-31.01.2027",
-    "date": "2027-01-30",
-    "day": "Sobota",
-    "time": "30min",
-    "subject": "Przerwa",
-    "type": "",
-    "place": "",
-    "mode": "Na miejscu",
-    "break": true,
-    "free": false,
-    "id": "0uzwgbdni"
   },
   {
     "zjazd": 12,
