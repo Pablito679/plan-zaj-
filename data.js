@@ -1844,5 +1844,18 @@ window.SCHEDULE_DATA = [
     "mode": "",
     "break": true,
     "free": false
+  },
+  {
+    "id": "cbb5v926g",
+    "zjazd": "1",
+    "date": "2026-10-09",
+    "time": "16:00-17:30",
+    "day": "Piątek",
+    "subject": "Zarządzanie",
+    "type": "Wykład",
+    "place": "zdalne",
+    "mode": "Zdalnie",
+    "break": false,
+    "free": false
   }
 ];
