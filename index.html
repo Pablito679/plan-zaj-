@@ -138,13 +138,13 @@ main{padding:18px}
 .dayhead{display:flex;align-items:center;margin-bottom:10px}
 .dayname{font-weight:800;font-size:15px;color:var(--text);}
 
-.card{position:relative;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;margin:10px 0;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:8px;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s,border-color 0.2s;user-select:none;touch-action:manipulation;}
+.card{position:relative;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 48px 16px 16px;margin:10px 0;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:8px;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s,border-color 0.2s;user-select:none;touch-action:manipulation;}
 @media (hover: hover) {.card:hover{transform:translateY(-2px);box-shadow:var(--shadow-hover);border-color:var(--toggle-active-bg);}}
 .card:active{transform:scale(0.98);}
 .card-main{display:flex;gap:14px;align-items:flex-start;width:100%;}
 .time{font-weight:800;min-width:92px;font-size:14px;margin-top:2px}
 .content{flex:1}
-.subject{font-weight:800;font-size:15px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding-right:20px;}
+.subject{font-weight:800;font-size:15px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
 .meta{font-size:13px;color:var(--text); opacity:0.7; margin-top:4px}
 .mode{font-size:11px;font-weight:800;padding:5px 9px;border-radius:999px;white-space:nowrap}
 .remote{background:var(--remote-bg);color:var(--remote-text);}
@@ -199,13 +199,17 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:30px}
 }
 .add-card:hover, .add-card-day:hover { opacity: 1; background: rgba(59, 130, 246, 0.05); }
 
-.delete-btn {
-  position: absolute; top: 12px; right: 12px; width: 32px; height: 32px;
-  background: transparent; color: #ef4444; border: none; font-weight: 900;
-  cursor: pointer; display: flex; justify-content: center; align-items: center; font-size: 20px;
-  transition: transform 0.2s; z-index: 10; padding: 0; outline: none;
+/* Kontener na przyciski edycji i usuwania na kafelku */
+.card-actions {
+  position: absolute; top: 12px; right: 10px; display: flex; flex-direction: column; gap: 6px; z-index: 10; align-items: center;
 }
-.delete-btn:hover { transform: scale(1.3); }
+.action-btn {
+  background: transparent; border: none; cursor: pointer; display: flex; justify-content: center; align-items: center; padding: 0; transition: transform 0.2s;
+}
+.action-btn:hover { transform: scale(1.25); }
+.edit-action-btn { color: var(--text); opacity: 0.6; }
+.edit-action-btn:hover { opacity: 1; }
+.delete-btn { color: #ef4444; font-weight: 900; font-size: 18px; width: 22px; height: 22px; display: flex; justify-content: center; align-items: center; }
 
 @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
 
@@ -379,7 +383,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:30px}
     
     <div class="modal-btn-row">
       <button class="btn-cancel" onclick="closeModal()">Anuluj</button>
-      <button class="btn-primary" onclick="confirmNewEntry()">Dodaj wpis</button>
+      <button class="btn-primary" onclick="confirmNewEntry()">Zapisz</button>
     </div>
   </div>
 </div>
@@ -399,13 +403,13 @@ const viewToggle = document.getElementById('viewToggle');
 const editToolbar = document.getElementById('editToolbar');
 const undoBtn = document.getElementById('undoBtn');
 
-// Ustawienie "dzisiejszej daty" w placeholderze
 const dzisiaj = new Date().toISOString().split('T')[0];
 elDate.placeholder = `Dzisiaj (${dzisiaj})`;
 
 let isEditMode = false;
 let historyStack = [];
 let initialDataState = "";
+let currentEditingId = null; // Przechowuje ID edytowanego elementu
 
 let currentView = localStorage.getItem('viewMode') === 'activeFuture' ? 'activeFuture' : 'all';
 if (currentView === 'activeFuture') viewToggle.classList.add('active-future');
@@ -576,10 +580,19 @@ function render() {
       const d = arr[0];
       
       let cards = arr.map(e => {
-        const delBtn = isEditMode ? `<button class="delete-btn" onclick="deleteEntry('${e.id}', event)" title="Usuń wpis">✕</button>` : '';
+        const actionsHTML = isEditMode ? `
+          <div class="card-actions">
+            <button class="action-btn edit-action-btn" onclick="openEditModal('${e.id}', event)" title="Edytuj wpis">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM21.41 6.34l-3.75-3.75c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83c.39-.39.39-1.02 0-1.41z"/>
+              </svg>
+            </button>
+            <button class="action-btn delete-btn" onclick="deleteEntry('${e.id}', event)" title="Usuń wpis">✕</button>
+          </div>` : '';
+          
         return `
         <div class="card">
-          ${delBtn}
+          ${actionsHTML}
           <div class="card-main">
             <div class="time">${e.time}</div>
             <div class="content">
@@ -718,6 +731,8 @@ document.getElementById('modalTypeSelect').addEventListener('change', (e) => {
 });
 
 window.openAddModal = (zjazdNum, date) => {
+  currentEditingId = null; // Tryb dodawania nowego
+  document.getElementById('modalTitle').textContent = 'Dodaj zajęcia';
   document.getElementById('modalZjazdInput').value = zjazdNum === 'Inne' ? '' : zjazdNum;
   document.getElementById('modalDate').value = date || '';
   
@@ -739,8 +754,47 @@ window.openAddModal = (zjazdNum, date) => {
   document.getElementById('modalPlace').value = '';
   document.getElementById('modalMode').value = 'Na miejscu';
   
-  setModalMode('Zajecia');
+  setModalMode('Zajęcia');
   
+  const modal = document.getElementById('addModal');
+  modal.style.display = 'flex';
+  setTimeout(() => modal.classList.add('active'), 10);
+};
+
+window.openEditModal = (id, ev) => {
+  ev.stopPropagation();
+  currentEditingId = id; // Tryb edycji istniejącego
+  document.getElementById('modalTitle').textContent = 'Edytuj wpis';
+  
+  const item = data.find(e => e.id === id);
+  if (!item) return;
+
+  document.getElementById('modalZjazdInput').value = item.zjazd || '';
+  document.getElementById('modalDate').value = item.date || '';
+  
+  if (item.date) {
+    const dayStrRaw = dayFormatter.format(new Date(item.date));
+    const dayStr = dayStrRaw.charAt(0).toUpperCase() + dayStrRaw.slice(1);
+    document.getElementById('modalDateDisplay').textContent = `${fmtDate(item.date)} (${dayStr})`;
+    document.getElementById('dateInputWrapper').style.display = 'none';
+    document.getElementById('dateDisplayWrapper').style.display = 'flex';
+  }
+
+  document.getElementById('modalTime').value = item.time || '';
+
+  if (item.break || item.free) {
+    setModalMode('Przerwa');
+    document.getElementById('modalTypeHidden').value = item.break ? 'Przerwa' : 'Wolne';
+  } else {
+    setModalMode('Zajęcia');
+    const mainT = item._mainType || 'Wykład';
+    document.getElementById('modalTypeSelect').value = mainT;
+    document.getElementById('modalTypeHidden').value = item.type || mainT;
+    document.getElementById('modalSubject').value = item.subject || '';
+    document.getElementById('modalPlace').value = item.place || '';
+    document.getElementById('modalMode').value = item.mode || 'Na miejscu';
+  }
+
   const modal = document.getElementById('addModal');
   modal.style.display = 'flex';
   setTimeout(() => modal.classList.add('active'), 10);
@@ -772,23 +826,42 @@ window.confirmNewEntry = () => {
   const isBreak = typeVal === 'Przerwa';
   const isFree = typeVal === 'Wolne';
 
-  const newItem = {
-    id: Math.random().toString(36).substr(2, 9),
-    zjazd: document.getElementById('modalZjazdInput').value,
-    date: dateVal,
-    time: timeVal,
-    day: dayName,
-    subject: (isBreak || isFree) ? '' : document.getElementById('modalSubject').value,
-    type: (isBreak || isFree) ? '' : typeVal,
-    place: (isBreak || isFree) ? '' : document.getElementById('modalPlace').value,
-    mode: (isBreak || isFree) ? '' : document.getElementById('modalMode').value,
-    break: isBreak,
-    free: isFree
-  };
-
-  preprocessItem(newItem);
   saveStateToHistory();
-  data.push(newItem);
+
+  if (currentEditingId) {
+    // Edycja istniejącego elementu
+    const item = data.find(e => e.id === currentEditingId);
+    if (item) {
+      item.date = dateVal;
+      item.time = timeVal;
+      item.day = dayName;
+      item.subject = (isBreak || isFree) ? '' : document.getElementById('modalSubject').value;
+      item.type = (isBreak || isFree) ? '' : typeVal;
+      item.place = (isBreak || isFree) ? '' : document.getElementById('modalPlace').value;
+      item.mode = (isBreak || isFree) ? '' : document.getElementById('modalMode').value;
+      item.break = isBreak;
+      item.free = isFree;
+      preprocessItem(item);
+    }
+  } else {
+    // Tworzenie nowego elementu
+    const newItem = {
+      id: Math.random().toString(36).substr(2, 9),
+      zjazd: document.getElementById('modalZjazdInput').value,
+      date: dateVal,
+      time: timeVal,
+      day: dayName,
+      subject: (isBreak || isFree) ? '' : document.getElementById('modalSubject').value,
+      type: (isBreak || isFree) ? '' : typeVal,
+      place: (isBreak || isFree) ? '' : document.getElementById('modalPlace').value,
+      mode: (isBreak || isFree) ? '' : document.getElementById('modalMode').value,
+      break: isBreak,
+      free: isFree
+    };
+    preprocessItem(newItem);
+    data.push(newItem);
+  }
+  
   saveToStorage();
   closeModal();
   render();
@@ -885,7 +958,7 @@ window.exportDataJS = (content) => {
 // -----------------------------------------------------
 
 elApp.addEventListener('click', (e) => {
-  if (e.target.closest('.delete-btn') || e.target.closest('.add-card-day') || e.target.closest('.add-card')) return;
+  if (e.target.closest('.delete-btn') || e.target.closest('.edit-action-btn') || e.target.closest('.action-btn') || e.target.closest('.add-card-day') || e.target.closest('.add-card')) return;
   const card = e.target.closest('.card');
   if (card) card.classList.toggle('open');
 });
