@@ -1,6 +1,6 @@
 window.SCHEDULE_DATA = [
   {
-    "zjazd": 1,
+    "zjazd": "1",
     "termin": "09-11.10.2026",
     "date": "2026-10-09",
     "day": "Piątek",
@@ -14,7 +14,7 @@ window.SCHEDULE_DATA = [
     "id": "5zky0xpir"
   },
   {
-    "zjazd": 1,
+    "zjazd": "1",
     "termin": "09-11.10.2026",
     "date": "2026-10-10",
     "day": "Sobota",
@@ -28,7 +28,7 @@ window.SCHEDULE_DATA = [
     "id": "yddz64l85"
   },
   {
-    "zjazd": 1,
+    "zjazd": "1",
     "termin": "09-11.10.2026",
     "date": "2026-10-10",
     "day": "Sobota",
@@ -42,7 +42,7 @@ window.SCHEDULE_DATA = [
     "id": "as20i2whq"
   },
   {
-    "zjazd": 1,
+    "zjazd": "1",
     "termin": "09-11.10.2026",
     "date": "2026-10-10",
     "day": "Sobota",
@@ -56,7 +56,7 @@ window.SCHEDULE_DATA = [
     "id": "kg9z3wui1"
   },
   {
-    "zjazd": 1,
+    "zjazd": "1",
     "termin": "09-11.10.2026",
     "date": "2026-10-10",
     "day": "Sobota",
@@ -70,7 +70,7 @@ window.SCHEDULE_DATA = [
     "id": "o8noe8k7r"
   },
   {
-    "zjazd": 1,
+    "zjazd": "1",
     "termin": "09-11.10.2026",
     "date": "2026-10-11",
     "day": "Niedziela",
@@ -84,7 +84,7 @@ window.SCHEDULE_DATA = [
     "id": "s1afpg1zm"
   },
   {
-    "zjazd": 1,
+    "zjazd": "1",
     "termin": "09-11.10.2026",
     "date": "2026-10-11",
     "day": "Niedziela",
@@ -98,7 +98,7 @@ window.SCHEDULE_DATA = [
     "id": "7n03xzee8"
   },
   {
-    "zjazd": 1,
+    "zjazd": "1",
     "termin": "09-11.10.2026",
     "date": "2026-10-11",
     "day": "Niedziela",
@@ -112,7 +112,7 @@ window.SCHEDULE_DATA = [
     "id": "wz8380ese"
   },
   {
-    "zjazd": 1,
+    "zjazd": "1",
     "termin": "09-11.10.2026",
     "date": "2026-10-11",
     "day": "Niedziela",
@@ -126,7 +126,7 @@ window.SCHEDULE_DATA = [
     "id": "iorelif98"
   },
   {
-    "zjazd": 1,
+    "zjazd": "1",
     "termin": "09-11.10.2026",
     "date": "2026-10-11",
     "day": "Niedziela",
@@ -140,7 +140,7 @@ window.SCHEDULE_DATA = [
     "id": "fnxt8lcfn"
   },
   {
-    "zjazd": 2,
+    "zjazd": "2",
     "termin": "16-18.10.2026",
     "date": "2026-10-16",
     "day": "Piątek",
@@ -154,7 +154,7 @@ window.SCHEDULE_DATA = [
     "id": "wdkmf1u3c"
   },
   {
-    "zjazd": 2,
+    "zjazd": "2",
     "termin": "16-18.10.2026",
     "date": "2026-10-16",
     "day": "Piątek",
@@ -168,7 +168,7 @@ window.SCHEDULE_DATA = [
     "id": "rzokex1br"
   },
   {
-    "zjazd": 2,
+    "zjazd": "2",
     "termin": "16-18.10.2026",
     "date": "2026-10-17",
     "day": "Sobota",
@@ -182,7 +182,7 @@ window.SCHEDULE_DATA = [
     "id": "pp7lwmyhw"
   },
   {
-    "zjazd": 2,
+    "zjazd": "2",
     "termin": "16-18.10.2026",
     "date": "2026-10-17",
     "day": "Sobota",
@@ -196,7 +196,7 @@ window.SCHEDULE_DATA = [
     "id": "3nvcswg4h"
   },
   {
-    "zjazd": 2,
+    "zjazd": "2",
     "termin": "16-18.10.2026",
     "date": "2026-10-17",
     "day": "Sobota",
@@ -210,7 +210,7 @@ window.SCHEDULE_DATA = [
     "id": "w5g0vm27t"
   },
   {
-    "zjazd": 2,
+    "zjazd": "2",
     "termin": "16-18.10.2026",
     "date": "2026-10-17",
     "day": "Sobota",
@@ -224,7 +224,7 @@ window.SCHEDULE_DATA = [
     "id": "2j3q379eh"
   },
   {
-    "zjazd": 2,
+    "zjazd": "2",
     "termin": "16-18.10.2026",
     "date": "2026-10-17",
     "day": "Sobota",
@@ -238,7 +238,7 @@ window.SCHEDULE_DATA = [
     "id": "5jspykl5n"
   },
   {
-    "zjazd": 2,
+    "zjazd": "2",
     "termin": "16-18.10.2026",
     "date": "2026-10-18",
     "day": "Niedziela",
@@ -252,7 +252,7 @@ window.SCHEDULE_DATA = [
     "id": "o4o1yfdzd"
   },
   {
-    "zjazd": 2,
+    "zjazd": "2",
     "termin": "16-18.10.2026",
     "date": "2026-10-18",
     "day": "Niedziela",
@@ -266,7 +266,7 @@ window.SCHEDULE_DATA = [
     "id": "zljwfcnc2"
   },
   {
-    "zjazd": 2,
+    "zjazd": "2",
     "termin": "16-18.10.2026",
     "date": "2026-10-18",
     "day": "Niedziela",
@@ -280,7 +280,7 @@ window.SCHEDULE_DATA = [
     "id": "bl2ggw78y"
   },
   {
-    "zjazd": 2,
+    "zjazd": "2",
     "termin": "16-18.10.2026",
     "date": "2026-10-18",
     "day": "Niedziela",
@@ -294,7 +294,7 @@ window.SCHEDULE_DATA = [
     "id": "3xurlpygz"
   },
   {
-    "zjazd": 3,
+    "zjazd": "3",
     "termin": "23-25.10.2026",
     "date": "2026-10-23",
     "day": "Piątek",
@@ -308,7 +308,7 @@ window.SCHEDULE_DATA = [
     "id": "xazh5r4zz"
   },
   {
-    "zjazd": 3,
+    "zjazd": "3",
     "termin": "23-25.10.2026",
     "date": "2026-10-23",
     "day": "Piątek",
@@ -322,7 +322,7 @@ window.SCHEDULE_DATA = [
     "id": "2kjbwr80v"
   },
   {
-    "zjazd": 3,
+    "zjazd": "3",
     "termin": "23-25.10.2026",
     "date": "2026-10-24",
     "day": "Sobota",
@@ -336,7 +336,7 @@ window.SCHEDULE_DATA = [
     "id": "aw6tdtazp"
   },
   {
-    "zjazd": 3,
+    "zjazd": "3",
     "termin": "23-25.10.2026",
     "date": "2026-10-24",
     "day": "Sobota",
@@ -350,7 +350,7 @@ window.SCHEDULE_DATA = [
     "id": "iw2jk7p3r"
   },
   {
-    "zjazd": 3,
+    "zjazd": "3",
     "termin": "23-25.10.2026",
     "date": "2026-10-24",
     "day": "Sobota",
@@ -364,7 +364,7 @@ window.SCHEDULE_DATA = [
     "id": "novfm8rys"
   },
   {
-    "zjazd": 3,
+    "zjazd": "3",
     "termin": "23-25.10.2026",
     "date": "2026-10-24",
     "day": "Sobota",
@@ -378,7 +378,7 @@ window.SCHEDULE_DATA = [
     "id": "2cmz0p1sq"
   },
   {
-    "zjazd": 3,
+    "zjazd": "3",
     "termin": "23-25.10.2026",
     "date": "2026-10-24",
     "day": "Sobota",
@@ -392,7 +392,7 @@ window.SCHEDULE_DATA = [
     "id": "2qm835w1g"
   },
   {
-    "zjazd": 3,
+    "zjazd": "3",
     "termin": "23-25.10.2026",
     "date": "2026-10-24",
     "day": "Sobota",
@@ -406,7 +406,7 @@ window.SCHEDULE_DATA = [
     "id": "9s0i6rada"
   },
   {
-    "zjazd": 3,
+    "zjazd": "3",
     "termin": "23-25.10.2026",
     "date": "2026-10-25",
     "day": "Niedziela",
@@ -420,7 +420,7 @@ window.SCHEDULE_DATA = [
     "id": "0e3gr74tr"
   },
   {
-    "zjazd": 3,
+    "zjazd": "3",
     "termin": "23-25.10.2026",
     "date": "2026-10-25",
     "day": "Niedziela",
@@ -434,7 +434,7 @@ window.SCHEDULE_DATA = [
     "id": "k2cr9rra1"
   },
   {
-    "zjazd": 3,
+    "zjazd": "3",
     "termin": "23-25.10.2026",
     "date": "2026-10-25",
     "day": "Niedziela",
@@ -448,7 +448,7 @@ window.SCHEDULE_DATA = [
     "id": "srz0oz2qt"
   },
   {
-    "zjazd": 3,
+    "zjazd": "3",
     "termin": "23-25.10.2026",
     "date": "2026-10-25",
     "day": "Niedziela",
@@ -462,7 +462,7 @@ window.SCHEDULE_DATA = [
     "id": "6olzxfsyh"
   },
   {
-    "zjazd": 3,
+    "zjazd": "3",
     "termin": "23-25.10.2026",
     "date": "2026-10-25",
     "day": "Niedziela",
@@ -476,7 +476,7 @@ window.SCHEDULE_DATA = [
     "id": "chjn877rm"
   },
   {
-    "zjazd": 4,
+    "zjazd": "4",
     "termin": "06-08.11.2026",
     "date": "2026-11-06",
     "day": "Piątek",
@@ -490,7 +490,7 @@ window.SCHEDULE_DATA = [
     "id": "88kjt9hdw"
   },
   {
-    "zjazd": 4,
+    "zjazd": "4",
     "termin": "06-08.11.2026",
     "date": "2026-11-06",
     "day": "Piątek",
@@ -504,7 +504,7 @@ window.SCHEDULE_DATA = [
     "id": "ccha88axg"
   },
   {
-    "zjazd": 4,
+    "zjazd": "4",
     "termin": "06-08.11.2026",
     "date": "2026-11-07",
     "day": "Sobota",
@@ -518,7 +518,7 @@ window.SCHEDULE_DATA = [
     "id": "n4oujdtxo"
   },
   {
-    "zjazd": 4,
+    "zjazd": "4",
     "termin": "06-08.11.2026",
     "date": "2026-11-07",
     "day": "Sobota",
@@ -532,7 +532,7 @@ window.SCHEDULE_DATA = [
     "id": "y561gdzzy"
   },
   {
-    "zjazd": 4,
+    "zjazd": "4",
     "termin": "06-08.11.2026",
     "date": "2026-11-07",
     "day": "Sobota",
@@ -546,7 +546,7 @@ window.SCHEDULE_DATA = [
     "id": "ii3t3jn2u"
   },
   {
-    "zjazd": 4,
+    "zjazd": "4",
     "termin": "06-08.11.2026",
     "date": "2026-11-07",
     "day": "Sobota",
@@ -560,7 +560,7 @@ window.SCHEDULE_DATA = [
     "id": "81o2x8pyw"
   },
   {
-    "zjazd": 4,
+    "zjazd": "4",
     "termin": "06-08.11.2026",
     "date": "2026-11-08",
     "day": "Niedziela",
@@ -574,7 +574,7 @@ window.SCHEDULE_DATA = [
     "id": "tqcq0navm"
   },
   {
-    "zjazd": 5,
+    "zjazd": "5",
     "termin": "13-15.11.2026",
     "date": "2026-11-13",
     "day": "Piątek",
@@ -588,7 +588,7 @@ window.SCHEDULE_DATA = [
     "id": "717umsof4"
   },
   {
-    "zjazd": 5,
+    "zjazd": "5",
     "termin": "13-15.11.2026",
     "date": "2026-11-13",
     "day": "Piątek",
@@ -602,7 +602,7 @@ window.SCHEDULE_DATA = [
     "id": "mitg76d33"
   },
   {
-    "zjazd": 5,
+    "zjazd": "5",
     "termin": "13-15.11.2026",
     "date": "2026-11-14",
     "day": "Sobota",
@@ -616,7 +616,7 @@ window.SCHEDULE_DATA = [
     "id": "q864296t8"
   },
   {
-    "zjazd": 5,
+    "zjazd": "5",
     "termin": "13-15.11.2026",
     "date": "2026-11-14",
     "day": "Sobota",
@@ -630,7 +630,7 @@ window.SCHEDULE_DATA = [
     "id": "3rf9vlqmq"
   },
   {
-    "zjazd": 5,
+    "zjazd": "5",
     "termin": "13-15.11.2026",
     "date": "2026-11-14",
     "day": "Sobota",
@@ -644,7 +644,7 @@ window.SCHEDULE_DATA = [
     "id": "3rx3m368v"
   },
   {
-    "zjazd": 5,
+    "zjazd": "5",
     "termin": "13-15.11.2026",
     "date": "2026-11-14",
     "day": "Sobota",
@@ -658,7 +658,7 @@ window.SCHEDULE_DATA = [
     "id": "78fmy11bg"
   },
   {
-    "zjazd": 5,
+    "zjazd": "5",
     "termin": "13-15.11.2026",
     "date": "2026-11-14",
     "day": "Sobota",
@@ -672,7 +672,7 @@ window.SCHEDULE_DATA = [
     "id": "ro5a16j29"
   },
   {
-    "zjazd": 5,
+    "zjazd": "5",
     "termin": "13-15.11.2026",
     "date": "2026-11-14",
     "day": "Sobota",
@@ -686,7 +686,7 @@ window.SCHEDULE_DATA = [
     "id": "r5n4kf3gb"
   },
   {
-    "zjazd": 5,
+    "zjazd": "5",
     "termin": "13-15.11.2026",
     "date": "2026-11-15",
     "day": "Niedziela",
@@ -700,7 +700,7 @@ window.SCHEDULE_DATA = [
     "id": "b2m4ivv48"
   },
   {
-    "zjazd": 5,
+    "zjazd": "5",
     "termin": "13-15.11.2026",
     "date": "2026-11-15",
     "day": "Niedziela",
@@ -714,7 +714,7 @@ window.SCHEDULE_DATA = [
     "id": "36if323je"
   },
   {
-    "zjazd": 5,
+    "zjazd": "5",
     "termin": "13-15.11.2026",
     "date": "2026-11-15",
     "day": "Niedziela",
@@ -728,7 +728,7 @@ window.SCHEDULE_DATA = [
     "id": "2lo4jdpkh"
   },
   {
-    "zjazd": 5,
+    "zjazd": "5",
     "termin": "13-15.11.2026",
     "date": "2026-11-15",
     "day": "Niedziela",
@@ -742,7 +742,7 @@ window.SCHEDULE_DATA = [
     "id": "hex5cc97a"
   },
   {
-    "zjazd": 6,
+    "zjazd": "6",
     "termin": "27-29.11.2026",
     "date": "2026-11-27",
     "day": "Piątek",
@@ -756,7 +756,7 @@ window.SCHEDULE_DATA = [
     "id": "iatscnyl8"
   },
   {
-    "zjazd": 6,
+    "zjazd": "6",
     "termin": "27-29.11.2026",
     "date": "2026-11-27",
     "day": "Piątek",
@@ -770,7 +770,7 @@ window.SCHEDULE_DATA = [
     "id": "8swxm0ppl"
   },
   {
-    "zjazd": 6,
+    "zjazd": "6",
     "termin": "27-29.11.2026",
     "date": "2026-11-28",
     "day": "Sobota",
@@ -784,7 +784,7 @@ window.SCHEDULE_DATA = [
     "id": "l1oq7uncu"
   },
   {
-    "zjazd": 6,
+    "zjazd": "6",
     "termin": "27-29.11.2026",
     "date": "2026-11-28",
     "day": "Sobota",
@@ -798,7 +798,7 @@ window.SCHEDULE_DATA = [
     "id": "fo7001zwy"
   },
   {
-    "zjazd": 6,
+    "zjazd": "6",
     "termin": "27-29.11.2026",
     "date": "2026-11-28",
     "day": "Sobota",
@@ -812,7 +812,7 @@ window.SCHEDULE_DATA = [
     "id": "v8v5q1hqa"
   },
   {
-    "zjazd": 6,
+    "zjazd": "6",
     "termin": "27-29.11.2026",
     "date": "2026-11-28",
     "day": "Sobota",
@@ -826,7 +826,7 @@ window.SCHEDULE_DATA = [
     "id": "9drjn9hjn"
   },
   {
-    "zjazd": 6,
+    "zjazd": "6",
     "termin": "27-29.11.2026",
     "date": "2026-11-29",
     "day": "Niedziela",
@@ -840,7 +840,7 @@ window.SCHEDULE_DATA = [
     "id": "1cps4uq4g"
   },
   {
-    "zjazd": 6,
+    "zjazd": "6",
     "termin": "27-29.11.2026",
     "date": "2026-11-29",
     "day": "Niedziela",
@@ -854,7 +854,7 @@ window.SCHEDULE_DATA = [
     "id": "ecl7e5w6a"
   },
   {
-    "zjazd": 6,
+    "zjazd": "6",
     "termin": "27-29.11.2026",
     "date": "2026-11-29",
     "day": "Niedziela",
@@ -868,7 +868,7 @@ window.SCHEDULE_DATA = [
     "id": "zhp23wyqv"
   },
   {
-    "zjazd": 6,
+    "zjazd": "6",
     "termin": "27-29.11.2026",
     "date": "2026-11-29",
     "day": "Niedziela",
@@ -882,7 +882,7 @@ window.SCHEDULE_DATA = [
     "id": "z1owvntjj"
   },
   {
-    "zjazd": 7,
+    "zjazd": "7",
     "termin": "04-06.12.2026",
     "date": "2026-12-04",
     "day": "Piątek",
@@ -896,7 +896,7 @@ window.SCHEDULE_DATA = [
     "id": "ai1lgki4h"
   },
   {
-    "zjazd": 7,
+    "zjazd": "7",
     "termin": "04-06.12.2026",
     "date": "2026-12-05",
     "day": "Sobota",
@@ -910,7 +910,7 @@ window.SCHEDULE_DATA = [
     "id": "pkee5jxou"
   },
   {
-    "zjazd": 7,
+    "zjazd": "7",
     "termin": "04-06.12.2026",
     "date": "2026-12-05",
     "day": "Sobota",
@@ -924,7 +924,7 @@ window.SCHEDULE_DATA = [
     "id": "3qr5z0ywx"
   },
   {
-    "zjazd": 7,
+    "zjazd": "7",
     "termin": "04-06.12.2026",
     "date": "2026-12-05",
     "day": "Sobota",
@@ -938,7 +938,7 @@ window.SCHEDULE_DATA = [
     "id": "b400wdcdr"
   },
   {
-    "zjazd": 7,
+    "zjazd": "7",
     "termin": "04-06.12.2026",
     "date": "2026-12-05",
     "day": "Sobota",
@@ -952,7 +952,7 @@ window.SCHEDULE_DATA = [
     "id": "qdnn6cuqv"
   },
   {
-    "zjazd": 7,
+    "zjazd": "7",
     "termin": "04-06.12.2026",
     "date": "2026-12-06",
     "day": "Niedziela",
@@ -966,7 +966,7 @@ window.SCHEDULE_DATA = [
     "id": "e16yiwncm"
   },
   {
-    "zjazd": 7,
+    "zjazd": "7",
     "termin": "04-06.12.2026",
     "date": "2026-12-06",
     "day": "Niedziela",
@@ -980,7 +980,7 @@ window.SCHEDULE_DATA = [
     "id": "lgzi40oyv"
   },
   {
-    "zjazd": 7,
+    "zjazd": "7",
     "termin": "04-06.12.2026",
     "date": "2026-12-06",
     "day": "Niedziela",
@@ -994,7 +994,7 @@ window.SCHEDULE_DATA = [
     "id": "jg9lqtck4"
   },
   {
-    "zjazd": 7,
+    "zjazd": "7",
     "termin": "04-06.12.2026",
     "date": "2026-12-06",
     "day": "Niedziela",
@@ -1008,7 +1008,7 @@ window.SCHEDULE_DATA = [
     "id": "qnpdupi2y"
   },
   {
-    "zjazd": 7,
+    "zjazd": "7",
     "termin": "04-06.12.2026",
     "date": "2026-12-06",
     "day": "Niedziela",
@@ -1022,7 +1022,7 @@ window.SCHEDULE_DATA = [
     "id": "zivpscsls"
   },
   {
-    "zjazd": 8,
+    "zjazd": "8",
     "termin": "11-13.12.2026",
     "date": "2026-12-11",
     "day": "Piątek",
@@ -1036,7 +1036,7 @@ window.SCHEDULE_DATA = [
     "id": "4hdnlsxg5"
   },
   {
-    "zjazd": 8,
+    "zjazd": "8",
     "termin": "11-13.12.2026",
     "date": "2026-12-11",
     "day": "Piątek",
@@ -1050,7 +1050,7 @@ window.SCHEDULE_DATA = [
     "id": "2zg95ii5h"
   },
   {
-    "zjazd": 8,
+    "zjazd": "8",
     "termin": "11-13.12.2026",
     "date": "2026-12-12",
     "day": "Sobota",
@@ -1064,7 +1064,7 @@ window.SCHEDULE_DATA = [
     "id": "iooh66a9o"
   },
   {
-    "zjazd": 8,
+    "zjazd": "8",
     "termin": "11-13.12.2026",
     "date": "2026-12-12",
     "day": "Sobota",
@@ -1078,7 +1078,7 @@ window.SCHEDULE_DATA = [
     "id": "03i37fdgj"
   },
   {
-    "zjazd": 8,
+    "zjazd": "8",
     "termin": "11-13.12.2026",
     "date": "2026-12-12",
     "day": "Sobota",
@@ -1092,7 +1092,7 @@ window.SCHEDULE_DATA = [
     "id": "ka4yuxa28"
   },
   {
-    "zjazd": 8,
+    "zjazd": "8",
     "termin": "11-13.12.2026",
     "date": "2026-12-12",
     "day": "Sobota",
@@ -1106,7 +1106,7 @@ window.SCHEDULE_DATA = [
     "id": "9m1r4i5io"
   },
   {
-    "zjazd": 8,
+    "zjazd": "8",
     "termin": "11-13.12.2026",
     "date": "2026-12-13",
     "day": "Niedziela",
@@ -1120,7 +1120,7 @@ window.SCHEDULE_DATA = [
     "id": "zedyp9am7"
   },
   {
-    "zjazd": 8,
+    "zjazd": "8",
     "termin": "11-13.12.2026",
     "date": "2026-12-13",
     "day": "Niedziela",
@@ -1134,7 +1134,7 @@ window.SCHEDULE_DATA = [
     "id": "btvic63l5"
   },
   {
-    "zjazd": 8,
+    "zjazd": "8",
     "termin": "11-13.12.2026",
     "date": "2026-12-13",
     "day": "Niedziela",
@@ -1148,7 +1148,7 @@ window.SCHEDULE_DATA = [
     "id": "r594lfi37"
   },
   {
-    "zjazd": 8,
+    "zjazd": "8",
     "termin": "11-13.12.2026",
     "date": "2026-12-13",
     "day": "Niedziela",
@@ -1162,7 +1162,7 @@ window.SCHEDULE_DATA = [
     "id": "aoikitz7o"
   },
   {
-    "zjazd": 9,
+    "zjazd": "9",
     "termin": "08-10.01.2027",
     "date": "2027-01-08",
     "day": "Piątek",
@@ -1176,7 +1176,7 @@ window.SCHEDULE_DATA = [
     "id": "49ilquegj"
   },
   {
-    "zjazd": 9,
+    "zjazd": "9",
     "termin": "08-10.01.2027",
     "date": "2027-01-09",
     "day": "Sobota",
@@ -1190,7 +1190,7 @@ window.SCHEDULE_DATA = [
     "id": "zsxzh57n9"
   },
   {
-    "zjazd": 9,
+    "zjazd": "9",
     "termin": "08-10.01.2027",
     "date": "2027-01-09",
     "day": "Sobota",
@@ -1204,7 +1204,7 @@ window.SCHEDULE_DATA = [
     "id": "56hwqn6ox"
   },
   {
-    "zjazd": 9,
+    "zjazd": "9",
     "termin": "08-10.01.2027",
     "date": "2027-01-09",
     "day": "Sobota",
@@ -1218,7 +1218,7 @@ window.SCHEDULE_DATA = [
     "id": "qpvvyivvi"
   },
   {
-    "zjazd": 9,
+    "zjazd": "9",
     "termin": "08-10.01.2027",
     "date": "2027-01-09",
     "day": "Sobota",
@@ -1232,7 +1232,7 @@ window.SCHEDULE_DATA = [
     "id": "z49ultl94"
   },
   {
-    "zjazd": 9,
+    "zjazd": "9",
     "termin": "08-10.01.2027",
     "date": "2027-01-10",
     "day": "Niedziela",
@@ -1246,7 +1246,7 @@ window.SCHEDULE_DATA = [
     "id": "yfo6ns0xy"
   },
   {
-    "zjazd": 9,
+    "zjazd": "9",
     "termin": "08-10.01.2027",
     "date": "2027-01-10",
     "day": "Niedziela",
@@ -1260,7 +1260,7 @@ window.SCHEDULE_DATA = [
     "id": "vxee81fgm"
   },
   {
-    "zjazd": 9,
+    "zjazd": "9",
     "termin": "08-10.01.2027",
     "date": "2027-01-10",
     "day": "Niedziela",
@@ -1274,7 +1274,7 @@ window.SCHEDULE_DATA = [
     "id": "wvyyf7adq"
   },
   {
-    "zjazd": 9,
+    "zjazd": "9",
     "termin": "08-10.01.2027",
     "date": "2027-01-10",
     "day": "Niedziela",
@@ -1288,7 +1288,7 @@ window.SCHEDULE_DATA = [
     "id": "la1go6asr"
   },
   {
-    "zjazd": 10,
+    "zjazd": "10",
     "termin": "15-17.01.2027",
     "date": "2027-01-15",
     "day": "Piątek",
@@ -1302,7 +1302,7 @@ window.SCHEDULE_DATA = [
     "id": "jc8vzp3ep"
   },
   {
-    "zjazd": 10,
+    "zjazd": "10",
     "termin": "15-17.01.2027",
     "date": "2027-01-16",
     "day": "Sobota",
@@ -1316,7 +1316,7 @@ window.SCHEDULE_DATA = [
     "id": "b0ac1kixq"
   },
   {
-    "zjazd": 10,
+    "zjazd": "10",
     "termin": "15-17.01.2027",
     "date": "2027-01-16",
     "day": "Sobota",
@@ -1330,7 +1330,7 @@ window.SCHEDULE_DATA = [
     "id": "3uywxtjc5"
   },
   {
-    "zjazd": 10,
+    "zjazd": "10",
     "termin": "15-17.01.2027",
     "date": "2027-01-16",
     "day": "Sobota",
@@ -1344,7 +1344,7 @@ window.SCHEDULE_DATA = [
     "id": "stfbs7ix1"
   },
   {
-    "zjazd": 10,
+    "zjazd": "10",
     "termin": "15-17.01.2027",
     "date": "2027-01-16",
     "day": "Sobota",
@@ -1358,7 +1358,7 @@ window.SCHEDULE_DATA = [
     "id": "xxb7ytx31"
   },
   {
-    "zjazd": 10,
+    "zjazd": "10",
     "termin": "15-17.01.2027",
     "date": "2027-01-17",
     "day": "Niedziela",
@@ -1372,7 +1372,7 @@ window.SCHEDULE_DATA = [
     "id": "tjzlvvuvx"
   },
   {
-    "zjazd": 10,
+    "zjazd": "10",
     "termin": "15-17.01.2027",
     "date": "2027-01-17",
     "day": "Niedziela",
@@ -1386,7 +1386,7 @@ window.SCHEDULE_DATA = [
     "id": "nxxs0gli8"
   },
   {
-    "zjazd": 10,
+    "zjazd": "10",
     "termin": "15-17.01.2027",
     "date": "2027-01-17",
     "day": "Niedziela",
@@ -1400,7 +1400,7 @@ window.SCHEDULE_DATA = [
     "id": "irpy3pexs"
   },
   {
-    "zjazd": 10,
+    "zjazd": "10",
     "termin": "15-17.01.2027",
     "date": "2027-01-17",
     "day": "Niedziela",
@@ -1414,7 +1414,7 @@ window.SCHEDULE_DATA = [
     "id": "w6n2i9bx6"
   },
   {
-    "zjazd": 11,
+    "zjazd": "11",
     "termin": "22-24.01.2027",
     "date": "2027-01-22",
     "day": "Piątek",
@@ -1428,7 +1428,7 @@ window.SCHEDULE_DATA = [
     "id": "adasc5zct"
   },
   {
-    "zjazd": 11,
+    "zjazd": "11",
     "termin": "22-24.01.2027",
     "date": "2027-01-23",
     "day": "Sobota",
@@ -1442,7 +1442,7 @@ window.SCHEDULE_DATA = [
     "id": "yq27simis"
   },
   {
-    "zjazd": 11,
+    "zjazd": "11",
     "termin": "22-24.01.2027",
     "date": "2027-01-23",
     "day": "Sobota",
@@ -1456,7 +1456,7 @@ window.SCHEDULE_DATA = [
     "id": "jw4mjdlmf"
   },
   {
-    "zjazd": 11,
+    "zjazd": "11",
     "termin": "22-24.01.2027",
     "date": "2027-01-23",
     "day": "Sobota",
@@ -1470,7 +1470,7 @@ window.SCHEDULE_DATA = [
     "id": "rcej0lwdn"
   },
   {
-    "zjazd": 11,
+    "zjazd": "11",
     "termin": "22-24.01.2027",
     "date": "2027-01-23",
     "day": "Sobota",
@@ -1484,7 +1484,7 @@ window.SCHEDULE_DATA = [
     "id": "wuz8omnmb"
   },
   {
-    "zjazd": 11,
+    "zjazd": "11",
     "termin": "22-24.01.2027",
     "date": "2027-01-24",
     "day": "Niedziela",
@@ -1498,7 +1498,7 @@ window.SCHEDULE_DATA = [
     "id": "paco55rdx"
   },
   {
-    "zjazd": 11,
+    "zjazd": "11",
     "termin": "22-24.01.2027",
     "date": "2027-01-24",
     "day": "Niedziela",
@@ -1512,7 +1512,7 @@ window.SCHEDULE_DATA = [
     "id": "8nvxrmhem"
   },
   {
-    "zjazd": 11,
+    "zjazd": "11",
     "termin": "22-24.01.2027",
     "date": "2027-01-24",
     "day": "Niedziela",
@@ -1526,7 +1526,7 @@ window.SCHEDULE_DATA = [
     "id": "tfvgwvuzk"
   },
   {
-    "zjazd": 12,
+    "zjazd": "12",
     "termin": "29-31.01.2027",
     "date": "2027-01-29",
     "day": "Piątek",
@@ -1540,7 +1540,7 @@ window.SCHEDULE_DATA = [
     "id": "h1o6va559"
   },
   {
-    "zjazd": 12,
+    "zjazd": "12",
     "termin": "29-31.01.2027",
     "date": "2027-01-30",
     "day": "Sobota",
@@ -1554,7 +1554,7 @@ window.SCHEDULE_DATA = [
     "id": "9j05z0rne"
   },
   {
-    "zjazd": 12,
+    "zjazd": "12",
     "termin": "29-31.01.2027",
     "date": "2027-01-30",
     "day": "Sobota",
@@ -1568,7 +1568,7 @@ window.SCHEDULE_DATA = [
     "id": "q98bje5de"
   },
   {
-    "zjazd": 12,
+    "zjazd": "12",
     "termin": "29-31.01.2027",
     "date": "2027-01-31",
     "day": "Niedziela",
@@ -1582,7 +1582,7 @@ window.SCHEDULE_DATA = [
     "id": "hjnn0485i"
   },
   {
-    "zjazd": 12,
+    "zjazd": "12",
     "termin": "29-31.01.2027",
     "date": "2027-01-31",
     "day": "Niedziela",
@@ -1596,7 +1596,7 @@ window.SCHEDULE_DATA = [
     "id": "e5p9jnc00"
   },
   {
-    "zjazd": 12,
+    "zjazd": "12",
     "termin": "29-31.01.2027",
     "date": "2027-01-31",
     "day": "Niedziela",
