@@ -266,6 +266,8 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:30px}
   </div>
 </header>
 
+<main class="wrap">
+  <div id="installHint" class="install" style="display:none">Na iPhonie wybierz <b>Udostępnij → Dodaj do ekranu początkowego</b>.</div>
   
   <div class="edit-toolbar" id="editToolbar">
     <div style="display:flex; align-items:center; gap: 8px;">
@@ -427,7 +429,6 @@ function parseStartTime(timeStr) {
   return parseInt(match[1]) * 60 + parseInt(match[2]);
 }
 
-// Funkcja walidująca poprawność zakresu godzin (np. 6:15 - 5:40 wyrzuci błąd)
 function validateTimeRange(timeStr) {
   const parts = timeStr.trim().split(/\s*[-–—]\s*/);
   if (parts.length !== 2) return false;
@@ -442,7 +443,7 @@ function validateTimeRange(timeStr) {
   const endMin = parseMinutes(parts[1]);
   
   if (startMin === null || endMin === null) return false;
-  if (startMin >= endMin) return false; // Zakończenie wcześniej lub w tym samym czasie co rozpoczęcie
+  if (startMin >= endMin) return false;
   
   return true;
 }
@@ -761,7 +762,6 @@ window.confirmNewEntry = () => {
     return;
   }
 
-  // WALIDACJA GODZIN
   if (!validateTimeRange(timeVal)) {
     alert('⚠️ Nieprawidłowa godzina! Godzina zakończenia nie może być wcześniejsza (lub równa) godzinie rozpoczęcia. (np. podaj w formacie: 7:00 - 8:30)');
     return;
