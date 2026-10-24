@@ -199,7 +199,6 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:30px}
 }
 .add-card:hover, .add-card-day:hover { opacity: 1; background: rgba(59, 130, 246, 0.05); }
 
-/* Kontener na przyciski edycji i usuwania na kafelku */
 .card-actions {
   position: absolute; top: 12px; right: 10px; display: flex; flex-direction: column; gap: 6px; z-index: 10; align-items: center;
 }
@@ -333,7 +332,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:30px}
     <div class="modal-title" id="modalTitle">Dodaj zajęcia</div>
     
     <div class="type-tab-container">
-      <button class="type-tab active" id="tabZajecia" onclick="setModalMode('Zajecia')">Zajęcia</button>
+      <button class="type-tab active" id="tabZajecia" onclick="setModalMode('Zajęcia')">Zajęcia</button>
       <button class="type-tab" id="tabPrzerwa" onclick="setModalMode('Przerwa')">Przerwa / Wolne</button>
     </div>
     
@@ -409,7 +408,7 @@ elDate.placeholder = `Dzisiaj (${dzisiaj})`;
 let isEditMode = false;
 let historyStack = [];
 let initialDataState = "";
-let currentEditingId = null; // Przechowuje ID edytowanego elementu
+let currentEditingId = null;
 
 let currentView = localStorage.getItem('viewMode') === 'activeFuture' ? 'activeFuture' : 'all';
 if (currentView === 'activeFuture') viewToggle.classList.add('active-future');
@@ -467,6 +466,9 @@ const LOCATIONS = [
 function preprocessItem(e) {
   if (!e.id) e.id = Math.random().toString(36).substr(2, 9);
   if (e.time) e.time = normalizeTime(e.time);
+  if (e.zjazd !== undefined && e.zjazd !== null) {
+    e.zjazd = String(e.zjazd).trim();
+  }
   
   const tLow = (e.type || '').toLowerCase();
   e._mainType = tLow.includes('wykład') ? 'Wykład' : tLow.includes('ćwiczenia') ? 'Ćwiczenia' : 'Inne';
@@ -502,7 +504,9 @@ function initFilters() {
 
   const zjazdy = new Set(), subjects = new Set(), types = new Set();
   data.forEach(e => {
-    if(e.zjazd) zjazdy.add(e.zjazd);
+    if(e.zjazd !== undefined && e.zjazd !== null && String(e.zjazd).trim() !== '') {
+      zjazdy.add(String(e.zjazd).trim());
+    }
     if(!e.break && !e.free) {
       if(e.subject) subjects.add(e.subject);
       types.add(e._mainType);
@@ -511,7 +515,11 @@ function initFilters() {
 
   const appendOpts = (select, set, prefix = '') => {
     const frag = document.createDocumentFragment();
-    [...set].sort((a,b) => (typeof a === 'number' ? a - b : a.localeCompare(b))).forEach(val => {
+    [...set].sort((a,b) => {
+      const numA = parseInt(a), numB = parseInt(b);
+      if (!isNaN(numA) && !isNaN(numB)) return numA - numB;
+      return a.localeCompare(b);
+    }).forEach(val => {
       if(!val) return;
       const opt = document.createElement('option');
       opt.value = val;
@@ -543,7 +551,7 @@ function render() {
 
   const filtered = data.filter(e => {
     if (isFuture && e.date < todayStr) return false;
-    if (zVal && String(e.zjazd) !== zVal) return false;
+    if (zVal && String(e.zjazd).trim() !== String(zVal).trim()) return false;
     if (sVal && e.subject !== sVal) return false;
     if (mVal && e.mode !== mVal) return false;
     if (dVal && e.date !== dVal) return false;
@@ -561,13 +569,19 @@ function render() {
 
   const groupedByZjazd = {};
   filtered.forEach(e => {
-    const z = e.zjazd || 'Inne';
+    const z = (e.zjazd !== undefined && e.zjazd !== null && String(e.zjazd).trim() !== '') ? String(e.zjazd).trim() : 'Inne';
     if (!groupedByZjazd[z]) groupedByZjazd[z] = {};
     if (!groupedByZjazd[z][e.date]) groupedByZjazd[z][e.date] = [];
     groupedByZjazd[z][e.date].push(e);
   });
 
-  const zjazdKeys = Object.keys(groupedByZjazd).sort((a,b) => (a === 'Inne' ? 1 : b === 'Inne' ? -1 : a - b));
+  const zjazdKeys = Object.keys(groupedByZjazd).sort((a,b) => {
+    if (a === 'Inne') return 1;
+    if (b === 'Inne') return -1;
+    const numA = parseInt(a), numB = parseInt(b);
+    if (!isNaN(numA) && !isNaN(numB)) return numA - numB;
+    return a.localeCompare(b);
+  });
   
   let html = '';
   zjazdKeys.forEach(z => {
@@ -731,9 +745,9 @@ document.getElementById('modalTypeSelect').addEventListener('change', (e) => {
 });
 
 window.openAddModal = (zjazdNum, date) => {
-  currentEditingId = null; // Tryb dodawania nowego
+  currentEditingId = null;
   document.getElementById('modalTitle').textContent = 'Dodaj zajęcia';
-  document.getElementById('modalZjazdInput').value = zjazdNum === 'Inne' ? '' : zjazdNum;
+  document.getElementById('modalZjazdInput').value = (zjazdNum === 'Inne' ? '' : zjazdNum);
   document.getElementById('modalDate').value = date || '';
   
   if(date) {
@@ -763,7 +777,7 @@ window.openAddModal = (zjazdNum, date) => {
 
 window.openEditModal = (id, ev) => {
   ev.stopPropagation();
-  currentEditingId = id; // Tryb edycji istniejącego
+  currentEditingId = id;
   document.getElementById('modalTitle').textContent = 'Edytuj wpis';
   
   const item = data.find(e => e.id === id);
@@ -829,7 +843,6 @@ window.confirmNewEntry = () => {
   saveStateToHistory();
 
   if (currentEditingId) {
-    // Edycja istniejącego elementu
     const item = data.find(e => e.id === currentEditingId);
     if (item) {
       item.date = dateVal;
@@ -844,7 +857,6 @@ window.confirmNewEntry = () => {
       preprocessItem(item);
     }
   } else {
-    // Tworzenie nowego elementu
     const newItem = {
       id: Math.random().toString(36).substr(2, 9),
       zjazd: document.getElementById('modalZjazdInput').value,
