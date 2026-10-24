@@ -1858,18 +1858,5 @@ window.SCHEDULE_DATA = [
     "mode": "",
     "break": true,
     "free": false
-  },
-  {
-    "id": "hyzzlfwdx",
-    "zjazd": "1",
-    "date": "2026-10-09",
-    "time": "5:00-6:00",
-    "day": "Piątek",
-    "subject": "",
-    "type": "",
-    "place": "",
-    "mode": "",
-    "break": true,
-    "free": false
   }
 ];
