@@ -172,7 +172,6 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:30px}
 .view-toggle:not(.active-future) .opt-all{color:var(--toggle-active-text);}
 .view-toggle.active-future .opt-future{color:var(--toggle-active-text);}
 
-/* STYLE EDYCYJNE */
 .edit-toolbar {
   display: none; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;
   background: #fef2f2; border: 1px solid #f87171; color: #991b1b;
@@ -212,7 +211,6 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:30px}
 
 @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
 
-/* MODAL */
 .modal-overlay {
   position: fixed; top: 0; left: 0; right: 0; bottom: 0;
   background: rgba(0,0,0,0.6); backdrop-filter: blur(4px);
@@ -232,7 +230,6 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:30px}
 .btn-primary:active { transform: scale(0.96); }
 .btn-cancel { background: transparent; color: var(--text); border: 1px solid var(--line); padding: 12px; border-radius: 12px; font-weight: bold; flex: 1; cursor: pointer; }
 
-/* Taby wewnątrz modalu */
 .type-tab-container { display: flex; gap: 8px; margin-bottom: 20px; background: var(--card); padding: 6px; border-radius: 12px; border: 1px solid var(--line); }
 .type-tab { flex: 1; text-align: center; padding: 10px; font-size: 13px; font-weight: bold; cursor: pointer; border-radius: 8px; transition: 0.2s; color: var(--text); background: transparent; border: none; }
 .type-tab.active { background: var(--toggle-active-bg); color: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
@@ -326,7 +323,6 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:30px}
   </div>
 </div>
 
-<!-- Modal Edycji -->
 <div class="modal-overlay" id="addModal">
   <div class="modal-box">
     <div class="modal-title" id="modalTitle">Dodaj zajęcia</div>
@@ -648,21 +644,20 @@ function render() {
   elApp.innerHTML = `<div class="animated-section">${html}</div>`;
 }
 
-// -----------------------------------------------------
-// LOGIKA TRYBU EDYCJI I ZAPISU (GITHub API)
-// -----------------------------------------------------
-
 window.enterEditMode = () => {
   const pass = prompt('Podaj hasło, aby włączyć tryb edycji planu:');
-  if (pass === 'devedit16@') {
-    isEditMode = true;
-    historyStack = [];
-    initialDataState = JSON.stringify(data);
-    updateUndoButton();
-    editToolbar.style.display = 'flex';
-    render();
-  } else if (pass !== null) {
-    alert('Błędne hasło!');
+  if (pass !== null) {
+    const check = Array.from(pass).map(c => c.charCodeAt(0) ^ 0x5A).join(',');
+    if (check === '62,63,44,63,62,51,46,107,108,26') {
+      isEditMode = true;
+      historyStack = [];
+      initialDataState = JSON.stringify(data);
+      updateUndoButton();
+      editToolbar.style.display = 'flex';
+      render();
+    } else {
+      alert('Błędne hasło!');
+    }
   }
 };
 
@@ -966,8 +961,6 @@ window.exportDataJS = (content) => {
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
 };
-
-// -----------------------------------------------------
 
 elApp.addEventListener('click', (e) => {
   if (e.target.closest('.delete-btn') || e.target.closest('.edit-action-btn') || e.target.closest('.action-btn') || e.target.closest('.add-card-day') || e.target.closest('.add-card')) return;
