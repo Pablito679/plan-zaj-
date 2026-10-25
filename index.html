@@ -647,8 +647,14 @@ function render() {
 window.enterEditMode = () => {
   const pass = prompt('Podaj hasło, aby włączyć tryb edycji planu:');
   if (pass !== null) {
-    const check = Array.from(pass).map(c => c.charCodeAt(0) ^ 0x5A).join(',');
-    if (check === '62,63,44,63,62,51,46,107,108,26') {
+    let a = 0, b = 0;
+    
+    for (let i = 0; i < pass.length; i++) {
+      a += pass.charCodeAt(i) * (i + 1);
+      b ^= (pass.charCodeAt(i) + i);
+    }
+    
+    if (pass.length === 10 && a === 4520 && b === 33) {
       isEditMode = true;
       historyStack = [];
       initialDataState = JSON.stringify(data);
